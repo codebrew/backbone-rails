@@ -12,4 +12,8 @@ end
 
 group :test, :development do
   gem 'sqlite3'
+  gem 'sass'
+  gem 'coffee-script'
+  gem 'uglifier'
+  gem 'jquery-rails'
 end

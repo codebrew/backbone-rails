@@ -34,9 +34,19 @@ GEM
     arel (2.1.0)
     bcrypt-ruby (2.1.4)
     builder (3.0.0)
+    coffee-script (2.2.0)
+      coffee-script-source
+      execjs
+    coffee-script-source (1.1.0)
     erubis (2.7.0)
+    execjs (0.3.3)
+      multi_json (~> 1.0)
     hike (1.0.0)
     i18n (0.6.0beta1)
+    jquery-rails (1.0.1)
+      railties (~> 3.0)
+      thor (~> 0.14)
+    json (1.5.1)
     mail (2.3.0)
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
@@ -68,6 +78,7 @@ GEM
       rake (>= 0.8.7)
       thor (~> 0.14.6)
     rake (0.8.7)
+    sass (3.1.1)
     sprockets (2.0.0.beta.2)
       hike (~> 1.0)
       rack (~> 1.0)
@@ -78,10 +89,17 @@ GEM
     treetop (1.4.9)
       polyglot (>= 0.3.1)
     tzinfo (0.3.27)
+    uglifier (0.5.1)
+      execjs
+      json
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  coffee-script
+  jquery-rails
   rails (= 3.1.0.beta1)
+  sass
   sqlite3
+  uglifier
