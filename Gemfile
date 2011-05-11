@@ -9,3 +9,7 @@ gem 'rails', '3.1.0.beta1'
 if RUBY_VERSION < '1.9'
   gem "ruby-debug", ">= 0.10.3"
 end
+
+group :test, :development do
+  gem 'sqlite3'
+end
