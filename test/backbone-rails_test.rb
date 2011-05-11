@@ -1,7 +1,11 @@
 require 'test_helper'
 
 class BackboneRailsTest < ActiveSupport::TestCase
-  test "truth" do
-    assert_kind_of Module, BackboneRails
+  test "backbone.js is found as an asset" do
+    assert_not_nil Dummy::Application.assets["backbone"]
+  end
+  
+  test "underscore.js is found as an asset" do
+    assert_not_nil Dummy::Application.assets["underscore"]
   end
 end
