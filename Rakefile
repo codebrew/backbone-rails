@@ -25,5 +25,24 @@ Rake::TestTask.new(:test) do |t|
   t.verbose = false
 end
 
-
 task :default => :test
+
+namespace :backbone do
+  desc "Download the latest versions of underscore and backbone.js from git"
+  task :download_latest do
+    files = {
+      'underscore.js'=>'https://github.com/documentcloud/underscore/raw/master/underscore.js',
+      'backbone.js' => 'https://github.com/documentcloud/backbone/raw/master/backbone.js'
+    }
+    
+    vendor_dir = "vendor/assets/javascripts"
+
+    require 'open-uri'
+    files.each do |local,remote|
+      puts "Downloading #{local}"
+      f = File.open "#{vendor_dir}/#{local}", 'w' do |f|
+        f.write open(remote).read
+      end
+    end
+  end
+end
