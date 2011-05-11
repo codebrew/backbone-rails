@@ -40,7 +40,7 @@ namespace :backbone do
     require 'open-uri'
     files.each do |local,remote|
       puts "Downloading #{local}"
-      f = File.open "#{vendor_dir}/#{local}", 'w' do |f|
+      File.open "#{vendor_dir}/#{local}", 'w' do |f|
         f.write open(remote).read
       end
     end
