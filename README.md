@@ -28,9 +28,13 @@ Any file with the extension '.js.jst' will get compiled using [underscore templa
 
 example `app/assets/javascripts/hello.js.jst`:
   
-    hello <%= name %>
+    Hello <%= name %>!
   
 will be compiled and available on the client as JST.hello
   
     JST.hello({name: "Tammy"});
+    
+would render:
+
+    Hello Tammy!
   
