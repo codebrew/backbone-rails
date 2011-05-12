@@ -11,6 +11,10 @@ gem 'coffee-script'
 gem 'uglifier'
 gem 'jquery-rails'
 
+gem 'tilt', :git => "git://github.com/rtomayko/tilt.git"
+
 if RUBY_VERSION < '1.9'
   gem "ruby-debug", ">= 0.10.3"
+else
+  gem "ruby-debug19"
 end
