@@ -5,7 +5,7 @@ module Tilt
     self.default_mime_type = 'text/x-underscore-template'
     
     def initialize_engine
-      require_template_library 'underscore'
+      require_template_library 'backbone-rails/underscore'
     end
     
     def prepare; end
