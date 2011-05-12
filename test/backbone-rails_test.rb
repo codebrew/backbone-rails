@@ -1,7 +1,5 @@
 require 'test_helper'
 
-require 'backbone-rails/underscore_template'
-
 class BackboneRailsTest < ActiveSupport::TestCase
   def setup
     @app = Dummy::Application
