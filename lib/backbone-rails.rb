@@ -1,6 +1,13 @@
 module Backbone
   module Rails
-    require 'backbone-rails/underscore_template'
-    require 'backbone-rails/engine'
+    
+    class Engine < ::Rails::Engine
+      config.autoload_paths << File.expand_path("../backbone-rails", __FILE__)
+      
+      config.after_initialize do |app|
+        app.assets.engines.register '.jst', Tilt::UnderscoreTemplate
+      end
+    end
+    
   end
 end
