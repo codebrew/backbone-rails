@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.version = "0.0.1"
   
   s.add_development_dependency "bundler", "~> 1.0.0"
-  s.add_development_dependency "rails",   "~> 3.1"
+  s.add_development_dependency "railties",   "~> 3.1"
   
   s.require_paths = ['lib']
 end
