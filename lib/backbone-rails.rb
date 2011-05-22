@@ -6,6 +6,7 @@ module Backbone
       
       config.after_initialize do |app|
         app.assets.engines.register '.jst', Tilt::UnderscoreTemplate
+        app.assets.engines.register '.jqt', Tilt::JqueryTemplate
       end
     end
     
