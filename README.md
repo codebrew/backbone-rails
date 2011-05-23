@@ -18,23 +18,4 @@ In your Gemfile, add this line:
   gem "backbone-rails"
   
 Then run `bundle install`. You're done!
-
-## JavaScript Templates
-
-This gem provides the ability to compile javascript templates using [underscore templates](http://documentcloud.github.com/underscore/#template)
-and makes them available on the client on a global JST object.
-
-Any file with the extension '.js.jst' will get compiled using [underscore templates](http://documentcloud.github.com/underscore/#template)
-
-example `app/assets/javascripts/hello.js.jst`:
-  
-    Hello <%= name %>!
-  
-will be compiled and available on the client as JST.hello
-  
-    JST.hello({name: "Tammy"});
-    
-would render:
-
-    Hello Tammy!
   
