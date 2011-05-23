@@ -5,7 +5,7 @@ module Backbone
       config.autoload_paths << File.expand_path("../backbone-rails", __FILE__)
       
       config.after_initialize do |app|
-        app.assets.engines.register '.jst', Tilt::UnderscoreTemplate
+        # app.assets.register_engine '.jst', Tilt::UnderscoreTemplate
       end
     end
     
