@@ -21,7 +21,7 @@ module Backbone::Generators
     end
     
     def create_app_file
-      template "app.coffee.erb", "app/assets/javascripts/backbone/#{application_name}.coffee"
+      template "app.coffee", "app/assets/javascripts/backbone/#{application_name}.coffee"
     end
     
     protected
