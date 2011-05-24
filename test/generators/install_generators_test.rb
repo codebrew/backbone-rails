@@ -24,6 +24,16 @@ class InstallGeneratorTest < Rails::Generators::TestCase
     
     %W{controllers models views templates}.each do |dir|
       assert_directory "app/assets/javascripts/backbone/#{dir}"
+      assert_file "app/assets/javascripts/backbone/#{dir}/.gitkeep"
+    end
+  end
+  
+  test "Assert no gitkeep files are created when skipping git" do
+    run_generator [destination_root, "--skip-git"]
+    
+    %W{controllers models views templates}.each do |dir|
+      assert_directory "app/assets/javascripts/backbone/#{dir}"
+      assert_no_file "app/assets/javascripts/backbone/#{dir}/.gitkeep"
     end
   end
   

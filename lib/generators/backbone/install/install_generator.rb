@@ -4,6 +4,9 @@ module Backbone::Generators
   
     desc "This generator installs backbone.js with a default folder layout in app/assets/javascripts/backbone"
           
+    class_option :skip_git, :type => :boolean, :aliases => "-G", :default => false,
+                            :desc => "Skip Git ignores and keeps"
+                                      
     def inject_backbone
       inject_into_file "app/assets/javascripts/application.js", :after => "//= require jquery_ujs" do
         "\n//= require underscore\n//= require backbone\n//= require backbone_rails_sync"
@@ -11,8 +14,9 @@ module Backbone::Generators
     end
     
     def create_dir_layout
-      %W{controllers models views templates}.each do |dir|          
-        create_file "app/assets/javascripts/backbone/#{dir}/.gitkeep"
+      %W{controllers models views templates}.each do |dir|
+        empty_directory "app/assets/javascripts/backbone/#{dir}" 
+        create_file "app/assets/javascripts/backbone/#{dir}/.gitkeep" unless options[:skip_git]
       end
     end
     
