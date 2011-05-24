@@ -6,7 +6,7 @@ module Backbone::Generators
           
     def inject_backbone
       inject_into_file "app/assets/javascripts/application.js", :after => "//= require jquery_ujs" do
-        "\n//= require underscore\n//= require backbone"
+        "\n//= require underscore\n//= require backbone\n//= require backbone_rails_sync"
       end
     end
     
