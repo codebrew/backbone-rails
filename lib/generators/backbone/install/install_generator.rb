@@ -8,8 +8,8 @@ module Backbone::Generators
                             :desc => "Skip Git ignores and keeps"
                                       
     def inject_backbone
-      inject_into_file "app/assets/javascripts/application.js", :after => "//= require jquery_ujs" do
-        "\n//= require underscore\n//= require backbone\n//= require backbone_rails_sync"
+      inject_into_file "app/assets/javascripts/application.js", :before => "//= require_tree" do
+        "//= require underscore\n//= require backbone\n//= require backbone_rails_sync\n"
       end
     end
     
