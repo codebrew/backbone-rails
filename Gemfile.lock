@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/rails/rails.git
-  revision: a5fb1c61755f03a8c75b0a434fb2aca57502293b
+  revision: c29ce8add01ed54a1d87c1420672aea70eab9297
   specs:
     actionmailer (3.1.0.rc1)
       actionpack (= 3.1.0.rc1)
@@ -50,7 +50,7 @@ GIT
 
 GIT
   remote: git://github.com/rtomayko/tilt.git
-  revision: 0f37285473221067fb8df6924aa2735e2d06bf5e
+  revision: 726ca07b0110105140fcb700fd90cdd3a23981b6
   specs:
     tilt (1.3.1)
 
@@ -63,7 +63,7 @@ GIT
 
 GIT
   remote: git://github.com/sstephenson/sprockets.git
-  revision: 4e6333c24343d34e30fe3d8a856b66fceb058214
+  revision: 9ec864cb1ad38c38930ce74569373947ddd166e6
   specs:
     sprockets (2.0.0.beta.8)
       hike (~> 1.0)
