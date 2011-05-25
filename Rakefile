@@ -15,7 +15,6 @@ Rake::RDocTask.new(:rdoc) do |rdoc|
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
 
-
 require 'rake/testtask'
 
 Rake::TestTask.new(:test) do |t|
