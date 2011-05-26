@@ -4,7 +4,7 @@
 #= require_tree ./views
 #= require_tree ./controllers
 
-window.<%= application_name.capitalize %> =
+window.Dummy =
   Models: {}
   Collections: {}
   Controllers: {}

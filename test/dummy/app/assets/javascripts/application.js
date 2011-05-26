@@ -3,8 +3,8 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require hello
 //= require underscore
 //= require backbone
 //= require backbone_rails_sync
+//= require backbone/dummy
 //= require_tree .
