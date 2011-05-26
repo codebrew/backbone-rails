@@ -18,16 +18,33 @@ module Backbone
                                 "Please choose an alternative action name and run this generator again."
           end
         end
-        
       end
       
-      def create_controller_files
-        @controller_namespace = [application_name.capitalize, "Controllers", class_name].join(".")
-        @view_namespace = [application_name.capitalize, "Views", class_name].join(".")
-      
+      def create_controller_files      
         template 'controller.coffee', File.join('app/assets/javascripts/backbone/controllers', class_path, "#{file_name}_controller.coffee")
       end
       
+      def create_view_files
+         actions.each do |action|
+           @action = action
+           @path = File.join('app/assets/javascripts/backbone/views', plural_name, "#{action}_view.coffee")
+           template "view.coffee", @path
+         end
+      end
+      
+      protected
+        def view_namespace
+          [application_name.capitalize, "Views", class_name].join(".")
+        end
+        
+        def controller_namespace
+          [application_name.capitalize, "Controllers", class_name].join(".")
+        end
+        
+        def template_name(action)
+          "#{plural_name}/#{action}"
+        end
+
     end
   end
 end
