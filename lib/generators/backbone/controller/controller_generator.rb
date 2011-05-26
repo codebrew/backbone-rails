@@ -27,8 +27,11 @@ module Backbone
       def create_view_files
          actions.each do |action|
            @action = action
-           @path = File.join('app/assets/javascripts/backbone/views', plural_name, "#{action}_view.coffee")
-           template "view.coffee", @path
+           @view_path = File.join('app/assets/javascripts/backbone/views', plural_name, "#{action}_view.coffee")
+           @jst_path = File.join('app/assets/javascripts/backbone/templates', plural_name, "#{action}.jst.ejs")
+           
+           template "view.coffee", @view_path
+           template "template.jst", @jst_path
          end
       end
       
@@ -41,7 +44,7 @@ module Backbone
           [application_name.capitalize, "Controllers", class_name].join(".")
         end
         
-        def template_name(action)
+        def jst(action)
           "#{plural_name}/#{action}"
         end
 
