@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   
   s.summary = "Use backbone.js with rails 3.1"
   s.description = "quickly setup backbone.js for use with rails 3.1"
-  s.files = Dir["lib/**/*"] + Dir["vendor/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
+  s.files = Dir["lib/**/*"] + Dir["vendor/**/*"] + ["MIT-LICENSE", "Rakefile", "README.md"]
   s.version = "0.0.1"
   
   s.add_development_dependency "bundler", "~> 1.0.0"
