@@ -1,10 +1,10 @@
 require 'test_helper'
+require 'generators/generators_test_helper'
 require "generators/backbone/install/install_generator"
 
-class InstallGeneratorTest < Rails::Generators::TestCase    
+class InstallGeneratorTest < Rails::Generators::TestCase
+  include GeneratorsTestHelper
   tests Backbone::Generators::InstallGenerator
-  destination File.expand_path("../tmp", File.dirname(__FILE__))
-  setup :prepare_destination
   
   def setup
     mkdir_p "#{destination_root}/app/assets/javascripts"

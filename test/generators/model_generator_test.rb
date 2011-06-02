@@ -1,10 +1,10 @@
 require 'test_helper'
+require 'generators/generators_test_helper'
 require "generators/backbone/model/model_generator"
 
-class ModelGeneratorTest < Rails::Generators::TestCase    
+class ModelGeneratorTest < Rails::Generators::TestCase
+  include GeneratorsTestHelper
   tests Backbone::Generators::ModelGenerator
-  destination File.expand_path("../tmp", File.dirname(__FILE__))
-  setup :prepare_destination
   
   test "simple model" do
     run_generator ["Post"]
