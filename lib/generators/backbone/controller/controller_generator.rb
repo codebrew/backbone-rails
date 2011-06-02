@@ -1,6 +1,10 @@
+require 'generators/backbone/resource_helpers'
+
 module Backbone
   module Generators
     class ControllerGenerator < Rails::Generators::NamedBase
+      include Backbone::Generators::ResourceHelpers
+      
       source_root File.expand_path("../templates", __FILE__)
       desc "This generator creates a backbone controller with views and templates for the provided actions"
       
@@ -36,14 +40,6 @@ module Backbone
       end
       
       protected
-        def view_namespace
-          [application_name.capitalize, "Views", class_name].join(".")
-        end
-        
-        def controller_namespace
-          [application_name.capitalize, "Controllers", class_name].join(".")
-        end
-        
         def jst(action)
           "backbone/templates/#{plural_name}/#{action}"
         end
