@@ -24,15 +24,15 @@ module Backbone
         end
       end
       
-      def create_controller_files      
-        template 'controller.coffee', File.join('app/assets/javascripts/backbone/controllers', class_path, "#{file_name}_controller.coffee")
+      def create_controller_files 
+        template 'controller.coffee', File.join(backbone_path, "controllers", class_path, "#{file_name}_controller.coffee")
       end
       
       def create_view_files
          actions.each do |action|
            @action = action
-           @view_path = File.join('app/assets/javascripts/backbone/views', plural_name, "#{action}_view.coffee")
-           @jst_path = File.join('app/assets/javascripts/backbone/templates', plural_name, "#{action}.jst.ejs")
+           @view_path = File.join(backbone_path, "views", plural_name, "#{action}_view.coffee")
+           @jst_path = File.join(backbone_path,"templates", plural_name, "#{action}.jst.ejs")
            
            template "view.coffee", @view_path
            template "template.jst", @jst_path
@@ -40,9 +40,7 @@ module Backbone
       end
       
       protected
-        def jst(action)
-          "backbone/templates/#{plural_name}/#{action}"
-        end
+        
 
     end
   end

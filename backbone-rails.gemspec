@@ -2,17 +2,18 @@
 # project in your rails apps through git.
 Gem::Specification.new do |s|
   s.name = "backbone-rails"
+  s.version = "0.0.1"
   s.authors     = ["Ryan Fitzgerald", "Code Brew Studios"]
   s.email       = ["ryan@codebrewstudios.com"]
-  s.homepage    = "http://rubygems.org/gems/backbone-rails"
+  s.homepage    = "http://github.com/codebrew/backbone-rails"
   
   s.summary = "Use backbone.js with rails 3.1"
-  s.description = "quickly setup backbone.js for use with rails 3.1"
+  s.description = "Quickly setup backbone.js for use with rails 3.1. Generators are provided to quickly get started."
   s.files = Dir["lib/**/*"] + Dir["vendor/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
-  s.version = "0.0.1"
+  
+  s.add_dependency('rails', '~> 3.1.0.beta1')
   
   s.add_development_dependency "bundler", "~> 1.0.0"
-  s.add_development_dependency "rails",   "~> 3.1"
   
   s.require_paths = ['lib']
 end

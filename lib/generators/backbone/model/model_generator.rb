@@ -9,7 +9,7 @@ module Backbone
       desc "This generator creates a backbone model"
     
       def create_backbone_model
-        template "model.coffee", "app/assets/javascripts/backbone/models/#{file_name}.coffee"
+        template "model.coffee", "#{backbone_path}/models/#{file_name}.coffee"
       end
     
     end
