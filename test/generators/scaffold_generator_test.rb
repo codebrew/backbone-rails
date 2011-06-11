@@ -33,6 +33,24 @@ class ScaffoldGeneratorTest < Rails::Generators::TestCase
       assert_match /#{Regexp.escape('template: JST["backbone/templates/posts/show"]')}/, view
     end
     
+    assert_file "#{backbone_path}/views/posts/new_view.coffee" do |view|
+      assert_match /class Dummy.Views.Posts.NewView extends Backbone.View/, view
+      assert_match /#{Regexp.escape('JST["backbone/templates/posts/new"]')}/, view
+    end
+    
+    assert_file "#{backbone_path}/views/posts/post_view.coffee" do |view|
+      assert_match /class Dummy.Views.Posts.PostView extends Backbone.View/, view
+      assert_match /#{Regexp.escape('JST["backbone/templates/posts/post"]')}/, view
+    end
   end
+  
+  test "generate template files" do
+    run_generator
+     
+    assert_file "#{backbone_path}/templates/posts/index.jst.ejs"
+    assert_file "#{backbone_path}/templates/posts/new.jst.ejs"
+    assert_file "#{backbone_path}/templates/posts/show.jst.ejs"
+    assert_file "#{backbone_path}/templates/posts/post.jst.ejs"
+   end
   
 end
