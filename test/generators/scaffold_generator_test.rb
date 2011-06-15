@@ -52,5 +52,14 @@ class ScaffoldGeneratorTest < Rails::Generators::TestCase
     assert_file "#{backbone_path}/templates/posts/show.jst.ejs"
     assert_file "#{backbone_path}/templates/posts/post.jst.ejs"
    end
+   
+  test "backbone model generator is invoked" do
+    run_generator
+    
+    assert_file "#{backbone_path}/models/post.coffee" do |model|
+      assert_match /url: '\/posts'/, model
+      assert_match /paramRoot: 'post'/, model
+    end
+  end
   
 end

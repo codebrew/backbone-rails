@@ -16,15 +16,15 @@ class InstallGeneratorTest < Rails::Generators::TestCase
   test "Assert application coffeescript file is created" do
     run_generator
     
-    assert_file "app/assets/javascripts/backbone/dummy.coffee", /window\.Dummy/
+    assert_file "#{backbone_path}/dummy.coffee", /window\.Dummy/
   end
   
   test "Assert backbone directory structure is created" do
     run_generator
     
     %W{controllers models views templates}.each do |dir|
-      assert_directory "app/assets/javascripts/backbone/#{dir}"
-      assert_file "app/assets/javascripts/backbone/#{dir}/.gitkeep"
+      assert_directory "#{backbone_path}/#{dir}"
+      assert_file "#{backbone_path}/#{dir}/.gitkeep"
     end
   end
   
@@ -32,8 +32,8 @@ class InstallGeneratorTest < Rails::Generators::TestCase
     run_generator [destination_root, "--skip-git"]
     
     %W{controllers models views templates}.each do |dir|
-      assert_directory "app/assets/javascripts/backbone/#{dir}"
-      assert_no_file "app/assets/javascripts/backbone/#{dir}/.gitkeep"
+      assert_directory "#{backbone_path}/#{dir}"
+      assert_no_file "#{backbone_path}/#{dir}/.gitkeep"
     end
   end
   

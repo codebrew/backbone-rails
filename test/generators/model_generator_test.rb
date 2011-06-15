@@ -9,7 +9,7 @@ class ModelGeneratorTest < Rails::Generators::TestCase
   test "simple model" do
     run_generator ["Post"]
     
-    assert_file "app/assets/javascripts/backbone/models/post.coffee", do |model|
+    assert_file "#{backbone_path}/models/post.coffee", do |model|
       model_class = Regexp.escape("class Dummy.Models.Post extends Backbone.Model")
       collection_class = Regexp.escape("class Dummy.Collections.PostsCollection extends Backbone.Collection")
       
