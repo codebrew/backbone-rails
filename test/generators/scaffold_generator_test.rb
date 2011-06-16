@@ -12,6 +12,7 @@ class ScaffoldGeneratorTest < Rails::Generators::TestCase
     
     assert_file "#{backbone_path}/controllers/posts_controller.coffee" do |controller|
       assert_match /class Dummy.Controllers.PostsController extends Backbone.Controller/, controller
+      assert_match /newPost: ->/, controller
       
       %w(NewView IndexView ShowView EditView).each do |view|
         assert_match /new Dummy.Views.Posts.#{view}/, controller

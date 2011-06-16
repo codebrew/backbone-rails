@@ -10,7 +10,7 @@ class Dummy.Controllers.PostsController extends Backbone.Controller
     "/:id": "show"
     ".*": "index"
 
-  newProject: ->
+  newPost: ->
     @view = new Dummy.Views.Posts.NewView(model: new @posts.model())
     $("#posts").html(@view.render().el)
 

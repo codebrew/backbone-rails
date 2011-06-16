@@ -10,7 +10,7 @@ class <%= controller_namespace %>Controller extends Backbone.Controller
     "/:id": "show"
     ".*": "index"
 
-  newProject: ->
+  new<%= class_name %>: ->
     @view = new <%= "#{view_namespace}.NewView(model: new @#{plural_name}.model())" %>
     $("#<%= plural_name %>").html(@view.render().el)
 
