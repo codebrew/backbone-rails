@@ -1,6 +1,6 @@
 <h1>New <%= singular_table_name %></h1>
 
-<form id="<%= singular_table_name %>" name="<%= singular_table_name %>">
+<form id="new-<%= singular_table_name %>" name="<%= singular_table_name %>">
 <% attributes.each do |attribute| -%>
   <div class="field">
     <label for="<%= attribute.name %>"> <%= attribute.name %>:</label>

@@ -4,9 +4,12 @@ class Dummy.Views.Posts.NewView extends Backbone.View
   template: JST["backbone/templates/posts/new"]
   
   events:
-    "submit #project-form": "save"
+    "submit #new-post": "save"
     
-  save: ->
+  save: (e) ->
+    e.preventDefault()
+    e.stopPropagation()
+      
     @options.model.save()
     return false
     

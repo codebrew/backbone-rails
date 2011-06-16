@@ -4,9 +4,12 @@ class <%= view_namespace %>.NewView extends Backbone.View
   template: JST["<%= jst 'new' %>"]
   
   events:
-    "submit #project-form": "save"
+    "submit #new-<%= singular_name %>": "save"
     
-  save: ->
+  save: (e) ->
+    e.preventDefault()
+    e.stopPropagation()
+      
     @options.model.save()
     return false
     
