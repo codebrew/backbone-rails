@@ -16,7 +16,7 @@ class <%= view_namespace %>.IndexView extends Backbone.View
     this.$("tbody").append(view.render().el)
        
   render: ->
-    $(this.el).html(this.template()(<%= plural_name %>: this.options.<%= plural_name %>.toJSON() ))
+    $(this.el).html(this.template(<%= plural_name %>: this.options.<%= plural_name %>.toJSON() ))
     @addAll()
     
     return this

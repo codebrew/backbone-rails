@@ -1,7 +1,7 @@
-<%= view_namespace %> ||= {}
+Dummy.Views.Posts ||= {}
 
-class <%= view_namespace %>.NewView extends Backbone.View
-  template: JST["<%= jst 'new' %>"]
+class Dummy.Views.Posts.NewView extends Backbone.View
+  template: JST["backbone/templates/posts/new"]
   
   events:
     "submit #project-form": "save"

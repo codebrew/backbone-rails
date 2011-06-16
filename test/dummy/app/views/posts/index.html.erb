@@ -23,3 +23,12 @@
 <br />
 
 <%= link_to 'New Post', new_post_path %>
+
+<div id="posts"></div>
+
+<script type="text/javascript">
+  $(function() {
+    window.controller = new Dummy.Controllers.PostsController({posts: <%= @posts.to_json.html_safe -%>});
+    Backbone.history.start();
+  });
+</script>

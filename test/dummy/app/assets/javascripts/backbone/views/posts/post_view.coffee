@@ -1,7 +1,7 @@
-<%= view_namespace %> ||= {}
+Dummy.Views.Posts ||= {}
 
-class <%= view_namespace %>.<%= singular_name.capitalize %>View extends Backbone.View
-  template: JST["<%= jst singular_name %>"]
+class Dummy.Views.Posts.PostView extends Backbone.View
+  template: JST["backbone/templates/posts/post"]
   
   events:
     "click .destroy" : "destroy"
