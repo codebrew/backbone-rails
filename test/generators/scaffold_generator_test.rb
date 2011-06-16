@@ -64,6 +64,9 @@ class ScaffoldGeneratorTest < Rails::Generators::TestCase
     assert_file "#{backbone_path}/models/post.coffee" do |model|
       assert_match /url: '\/posts'/, model
       assert_match /paramRoot: 'post'/, model
+      
+      assert_match /title: null/, model
+      assert_match /content: null/, model
     end
   end
   
