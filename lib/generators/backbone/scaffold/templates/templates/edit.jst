@@ -1,0 +1,17 @@
+<h1>Edit <%= singular_table_name %></h1>
+
+<form id="edit-<%= singular_table_name %>" name="<%= singular_table_name %>">
+<% attributes.each do |attribute| -%>
+  <div class="field">
+    <label for="<%= attribute.name %>"> <%= attribute.name %>:</label>
+    <input type="text" name="<%= attribute.name %>" id="<%= attribute.name %>" value=<%%= <%= attribute.name %> %> >
+  </div>
+
+<% end -%>
+  <div class="actions">
+    <input type="submit" value="Update <%= human_name %>" />
+  </div>
+
+</form>
+
+<a href="#/index">Back</a>

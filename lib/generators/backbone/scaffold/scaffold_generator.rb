@@ -23,7 +23,7 @@ module Backbone
       
       protected
         def available_views
-          %w(index show new)
+          %w(index show new edit)
         end
         
     end

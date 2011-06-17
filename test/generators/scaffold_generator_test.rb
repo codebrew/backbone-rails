@@ -43,6 +43,12 @@ class ScaffoldGeneratorTest < Rails::Generators::TestCase
       assert_match /#{Regexp.escape('"submit #new-post": "save"')}/, view
     end
     
+    assert_file "#{backbone_path}/views/posts/edit_view.coffee" do |view|
+      assert_match /class Dummy.Views.Posts.EditView extends Backbone.View/, view
+      assert_match /#{Regexp.escape('JST["backbone/templates/posts/edit"]')}/, view
+      assert_match /#{Regexp.escape('"submit #edit-post": "update"')}/, view
+    end
+    
     assert_file "#{backbone_path}/views/posts/post_view.coffee" do |view|
       assert_match /class Dummy.Views.Posts.PostView extends Backbone.View/, view
       assert_match /#{Regexp.escape('this.template(this.options.model.toJSON() )')}/, view
@@ -57,6 +63,10 @@ class ScaffoldGeneratorTest < Rails::Generators::TestCase
     
     assert_file "#{backbone_path}/templates/posts/new.jst.ejs" do |view|
       assert_match /#{Regexp.escape('<form id="new-post" name="post">')}/, view
+    end
+    
+    assert_file "#{backbone_path}/templates/posts/edit.jst.ejs" do |view|
+      assert_match /#{Regexp.escape('<form id="edit-post" name="post">')}/, view
     end
     
     assert_file "#{backbone_path}/templates/posts/show.jst.ejs"
