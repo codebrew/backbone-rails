@@ -1,7 +1,7 @@
 # Provide a simple gemspec so you can easily use your
 # project in your rails apps through git.
 Gem::Specification.new do |s|
-  s.name = "backbone-rails"
+  s.name = "backbonejs-rails"
   s.version = "0.1.0"
   s.authors     = ["Ryan Fitzgerald", "Code Brew Studios"]
   s.email       = ["ryan@codebrewstudios.com"]
