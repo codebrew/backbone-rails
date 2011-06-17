@@ -11,12 +11,23 @@ This gem vendors the latest version of underscore.js and backbones.js for Rails 
 
 In your Gemfile, add this line:
 
-    gem "backbone-rails"
+    gem "rails-backbone"
   
 Then run the following commands:
 
     bundle install
     rails g backbone:install
+
+### Layout and namespacing
+
+Running `rails g backbone:install` will create the following directory structure under `app/assets/javascripts/backbone`:
+  
+    controllers/
+    models/
+    templates/
+    views/
+    
+It will also create a toplevel app_name.coffee file to setup namespacing and setup initial requires.
     
 ## Generators
 backbone-rails provides 3 simple generators to help get you started using bacbone.js with rails 3.1
