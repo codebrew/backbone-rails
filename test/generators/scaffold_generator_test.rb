@@ -38,7 +38,7 @@ class ScaffoldGeneratorTest < Rails::Generators::TestCase
     
     assert_file "#{backbone_path}/views/posts/new_view.coffee" do |view|
       assert_match /class Dummy.Views.Posts.NewView extends Backbone.View/, view
-      assert_match /#{Regexp.escape('this.template(this.options.model.toJSON() )')}/, view
+      assert_match /#{Regexp.escape('this.template(@options.model.toJSON() )')}/, view
       assert_match /#{Regexp.escape('JST["backbone/templates/posts/new"]')}/, view
       assert_match /#{Regexp.escape('"submit #new-post": "save"')}/, view
     end

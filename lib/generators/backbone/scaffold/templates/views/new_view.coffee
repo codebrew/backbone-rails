@@ -10,11 +10,15 @@ class <%= view_namespace %>.NewView extends Backbone.View
     e.preventDefault()
     e.stopPropagation()
       
-    @options.model.save()
-    return false
+    @options.collection.create(@options.model.toJSON(), 
+      success: (model) =>
+        @options.model = model
+        window.location.hash = "/#{@options.model.id}"
+    )
     
   render: ->
-    $(this.el).html(this.template(this.options.model.toJSON() ))
+    @options.model = new @options.collection.model()
+    $(this.el).html(this.template(@options.model.toJSON() ))
     
     this.$("form").backboneLink(@options.model)
     

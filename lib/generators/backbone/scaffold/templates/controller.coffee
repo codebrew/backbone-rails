@@ -11,7 +11,7 @@ class <%= controller_namespace %>Controller extends Backbone.Controller
     ".*": "index"
 
   new<%= class_name %>: ->
-    @view = new <%= "#{view_namespace}.NewView(model: new @#{plural_name}.model())" %>
+    @view = new <%= "#{view_namespace}.NewView(collection: @#{plural_name})" %>
     $("#<%= plural_name %>").html(@view.render().el)
 
   index: ->

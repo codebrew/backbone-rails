@@ -11,7 +11,7 @@ class Dummy.Controllers.PostsController extends Backbone.Controller
     ".*": "index"
 
   newPost: ->
-    @view = new Dummy.Views.Posts.NewView(model: new @posts.model())
+    @view = new Dummy.Views.Posts.NewView(collection: @posts)
     $("#posts").html(@view.render().el)
 
   index: ->
