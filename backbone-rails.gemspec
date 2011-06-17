@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   
   s.summary = "Use backbone.js with rails 3.1"
   s.description = "Quickly setup backbone.js for use with rails 3.1. Generators are provided to quickly get started."
-  s.files = Dir["lib/**/*"] + Dir["vendor/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
+  s.files = Dir["lib/**/*"] + Dir["vendor/**/*"] + ["MIT-LICENSE", "Rakefile", "README.md"]
   
   s.add_dependency('rails', '~> 3.1.0.beta1')
   s.add_dependency('coffee-script', '~> 2.2.0')
