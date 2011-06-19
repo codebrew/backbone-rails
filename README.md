@@ -30,7 +30,8 @@ Running `rails g backbone:install` will create the following directory structure
 It will also create a toplevel app_name.coffee file to setup namespacing and setup initial requires.
     
 ## Generators
-backbone-rails provides 3 simple generators to help get you started using bacbone.js with rails 3.1
+backbone-rails provides 3 simple generators to help get you started using bacbone.js with rails 3.1. 
+The generators will only create client side code (javascript).
 
 ### Model Generator
 
@@ -49,3 +50,33 @@ This generator creates a backbone controller with corresponding views and templa
     rails g backbone:scaffold
     
 This generator creates a controller, views, templates, model and collection to create a simple crud single page app
+
+## Example Usage
+
+Say we have just created a new rails 3.1 application called `blog`. Edit your gemfile and add `gem rails-backbone`.
+
+Install the gem and generate scaffolding.
+
+    bundle install
+    rails g backbone:install
+    rails g scaffold Post title:string content:string
+    rake db:migrate
+    rails g backbone:scaffold Post title:string content:string
+    
+You now have installed the backbone-rails gem, setup a default directory structure for your frontend backbone code. 
+Then you generated the usual rails server side crud scaffolding and finally generated backbone.js code to provide a simple single page crud app.
+You have one last step:
+
+Edit your posts index view `app/views/posts/index.html.erb` with the following contents:
+
+    <div id="posts"></div>
+
+    <script type="text/javascript">
+      $(function() {
+        window.controller = new Blog.Controllers.PostsController({posts: <%= @posts.to_json.html_safe -%>});
+        Backbone.history.start();
+      });
+    </script>
+    
+Now start your server `rails s` and browse to [localhost:3000/posts](http://localhost:3000/posts)
+You should now have a fully functioning single page crud app for Post models.
