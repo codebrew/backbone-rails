@@ -9,10 +9,10 @@ class ControllerGeneratorTest < Rails::Generators::TestCase
   test "simple controller with two actions" do
     run_generator ["Posts", "index", "edit"]
     
-    assert_file "#{backbone_path}/controllers/posts_controller.coffee"
+    assert_file "#{backbone_path}/controllers/posts_controller.js.coffee"
     
-    %W{index edit}.each do |action|  
-      assert_file "#{backbone_path}/views/posts/#{action}_view.coffee"
+    %W{index edit}.each do |action|
+      assert_file "#{backbone_path}/views/posts/#{action}_view.js.coffee"
       assert_file "#{backbone_path}/templates/posts/#{action}.jst.ejs"
     end
   end

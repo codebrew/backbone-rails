@@ -22,7 +22,7 @@ module Backbone
       end
     
       def create_app_file
-        template "app.coffee", "app/assets/javascripts/backbone/#{application_name}.coffee"
+        template "app.coffee", "app/assets/javascripts/backbone/#{application_name}.js.coffee"
       end
     
       protected
