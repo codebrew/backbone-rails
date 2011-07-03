@@ -22,7 +22,11 @@
     var params = _.extend({
       type:         type,
       dataType:     'json',
-      processData:  false
+      processData:  false,
+      beforeSend: function( xhr ) {
+        var token = $('meta[name="csrf-token"]').attr('content');
+        if (token) xhr.setRequestHeader('X-CSRF-Token', token);
+      }
     }, options);
 
     if (!params.url) {
