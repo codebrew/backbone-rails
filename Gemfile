@@ -5,7 +5,8 @@ source "http://rubygems.org"
 # Bundle edge Rails instead:
 gem 'rails', :git => 'git://github.com/rails/rails.git'
 gem 'tilt', :git => "git://github.com/rtomayko/tilt.git"
-gem 'sprockets', :git => "git://github.com/sstephenson/sprockets.git"
+gem 'sprockets', "= 2.0.0.beta.10"
+# gem 'sprockets', :git => "git://github.com/sstephenson/sprockets.git"
 gem 'execjs', :git => "git://github.com/sstephenson/execjs.git"
 
 gem 'sqlite3'
