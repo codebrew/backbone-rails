@@ -1,7 +1,7 @@
-class <%= controller_namespace %>Controller extends Backbone.Controller
+class <%= router_namespace %>Router extends Backbone.Router
   initialize: (options) ->
     @<%= plural_name %> = new <%= collection_namespace %>Collection()
-    @<%= plural_name %>.refresh options.<%= plural_name %>
+    @<%= plural_name %>.reset options.<%= plural_name %>
 
   routes:
     "/new": "new<%= class_name %>"

@@ -6,7 +6,7 @@ class <%= view_namespace %>.IndexView extends Backbone.View
   initialize: () ->
     _.bindAll(this, 'addOne', 'addAll', 'render');
     
-    @options.<%= plural_name %>.bind('refresh', this.addAll);
+    @options.<%= plural_name %>.bind('reset', this.addAll);
    
   addAll: () ->
     @options.<%= plural_name %>.each(this.addOne)

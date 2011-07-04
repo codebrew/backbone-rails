@@ -6,7 +6,7 @@ class Dummy.Views.Posts.IndexView extends Backbone.View
   initialize: () ->
     _.bindAll(this, 'addOne', 'addAll', 'render');
     
-    @options.posts.bind('refresh', this.addAll);
+    @options.posts.bind('reset', this.addAll);
    
   addAll: () ->
     @options.posts.each(this.addOne)

@@ -22,7 +22,7 @@ class InstallGeneratorTest < Rails::Generators::TestCase
   test "Assert backbone directory structure is created" do
     run_generator
     
-    %W{controllers models views templates}.each do |dir|
+    %W{routers models views templates}.each do |dir|
       assert_directory "#{backbone_path}/#{dir}"
       assert_file "#{backbone_path}/#{dir}/.gitkeep"
     end
@@ -31,7 +31,7 @@ class InstallGeneratorTest < Rails::Generators::TestCase
   test "Assert no gitkeep files are created when skipping git" do
     run_generator [destination_root, "--skip-git"]
     
-    %W{controllers models views templates}.each do |dir|
+    %W{routers models views templates}.each do |dir|
       assert_directory "#{backbone_path}/#{dir}"
       assert_no_file "#{backbone_path}/#{dir}/.gitkeep"
     end

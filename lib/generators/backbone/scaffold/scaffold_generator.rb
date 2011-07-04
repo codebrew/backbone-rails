@@ -7,8 +7,8 @@ module Backbone
       source_root File.expand_path("../templates", __FILE__)
       desc "This generator creates the client side crud scaffolding"
       
-      def create_controller_files 
-        template 'controller.coffee', File.join(backbone_path, "controllers", class_path, "#{plural_name}_controller.js.coffee")
+      def create_router_files 
+        template 'router.coffee', File.join(backbone_path, "routers", class_path, "#{plural_name}_router.js.coffee")
       end
       
       def create_view_files

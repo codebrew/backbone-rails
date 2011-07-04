@@ -1,4 +1,4 @@
-class <%= controller_namespace %>Controller extends Backbone.Controller
+class <%= router_namespace %>Router extends Backbone.Router
   initialize: (options) ->
     
   routes:

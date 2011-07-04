@@ -1,6 +1,6 @@
 # Backbone-Rails
 
-Easily setup and use backbone.js with rails 3.1
+Easily setup and use backbone.js (0.5.0) with rails 3.1
 
 ## Rails 3.1 setup
 This gem requires the use of rails 3.1, coffeescript and the new rails asset pipeline provided by sprockets.
@@ -22,7 +22,7 @@ Then run the following commands:
 
 Running `rails g backbone:install` will create the following directory structure under `app/assets/javascripts/backbone`:
   
-    controllers/
+    routers/
     models/
     templates/
     views/
@@ -39,17 +39,17 @@ The generators will only create client side code (javascript).
     
 This generator creates a backbone model and collection inside `app/assets/javascript/backbone/models` to be used to talk to the rails backend.
 
-### Controller
+### Routers
     
-    rails g backbone:controller
+    rails g backbone:router
     
-This generator creates a backbone controller with corresponding views and templates for the given actions provided.
+This generator creates a backbone router with corresponding views and templates for the given actions provided.
 
 ### Scaffolding
 
     rails g backbone:scaffold
     
-This generator creates a controller, views, templates, model and collection to create a simple crud single page app
+This generator creates a router, views, templates, model and collection to create a simple crud single page app
 
 ## Example Usage
 
@@ -73,7 +73,7 @@ Edit your posts index view `app/views/posts/index.html.erb` with the following c
 
     <script type="text/javascript">
       $(function() {
-        window.controller = new Blog.Controllers.PostsController({posts: <%= @posts.to_json.html_safe -%>});
+        window.router = new Blog.Routers.PostsRouter({posts: <%= @posts.to_json.html_safe -%>});
         Backbone.history.start();
       });
     </script>

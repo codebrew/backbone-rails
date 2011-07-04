@@ -7,17 +7,17 @@ class ScaffoldGeneratorTest < Rails::Generators::TestCase
   tests Backbone::Generators::ScaffoldGenerator
   arguments %w(Post title:string content:string)
   
-  test "generate controller scaffolding" do
+  test "generate router scaffolding" do
     run_generator
     
-    assert_file "#{backbone_path}/controllers/posts_controller.js.coffee" do |controller|
-      assert_match /class Dummy.Controllers.PostsController extends Backbone.Controller/, controller
-      assert_match /newPost: ->/, controller
+    assert_file "#{backbone_path}/routers/posts_router.js.coffee" do |router|
+      assert_match /class Dummy.Routers.PostsRouter extends Backbone.Router/, router
+      assert_match /newPost: ->/, router
+      assert_match /@posts.reset options.posts/, router
       
       %w(NewView IndexView ShowView EditView).each do |view|
-        assert_match /new Dummy.Views.Posts.#{view}/, controller
+        assert_match /new Dummy.Views.Posts.#{view}/, router
       end
-      
     end
   end
   

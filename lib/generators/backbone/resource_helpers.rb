@@ -18,8 +18,8 @@ module Backbone
         [application_name.capitalize, "Views", plural_name.capitalize].join(".")
       end
       
-      def controller_namespace
-        [application_name.capitalize, "Controllers", plural_name.capitalize].join(".")
+      def router_namespace
+        [application_name.capitalize, "Routers", plural_name.capitalize].join(".")
       end
       
       def jst(action)

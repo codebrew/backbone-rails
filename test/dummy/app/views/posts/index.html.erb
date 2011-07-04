@@ -2,7 +2,7 @@
 
 <script type="text/javascript">
   $(function() {
-    window.controller = new Dummy.Controllers.PostsController({posts: <%= @posts.to_json.html_safe -%>});
+    window.router = new Dummy.Routers.PostsRouter({posts: <%= @posts.to_json.html_safe -%>});
     Backbone.history.start();
   });
 </script>

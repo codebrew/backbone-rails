@@ -1,15 +1,17 @@
 require 'test_helper'
 require 'generators/generators_test_helper'
-require "generators/backbone/controller/controller_generator"
+require "generators/backbone/router/router_generator"
 
-class ControllerGeneratorTest < Rails::Generators::TestCase
+class RouterGeneratorTest < Rails::Generators::TestCase
   include GeneratorsTestHelper
-  tests Backbone::Generators::ControllerGenerator
+  tests Backbone::Generators::RouterGenerator
   
-  test "simple controller with two actions" do
+  test "simple router with two actions" do
     run_generator ["Posts", "index", "edit"]
     
-    assert_file "#{backbone_path}/controllers/posts_controller.js.coffee"
+    assert_file "#{backbone_path}/routers/posts_router.js.coffee" do |router|
+      assert_match /Dummy.Routers.PostsRouter extends Backbone.Router/, router
+    end
     
     %W{index edit}.each do |action|
       assert_file "#{backbone_path}/views/posts/#{action}_view.js.coffee"

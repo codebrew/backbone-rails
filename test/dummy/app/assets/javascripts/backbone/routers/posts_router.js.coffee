@@ -1,7 +1,7 @@
-class Dummy.Controllers.PostsController extends Backbone.Controller
+class Dummy.Routers.PostsRouter extends Backbone.Router
   initialize: (options) ->
     @posts = new Dummy.Collections.PostsCollection()
-    @posts.refresh options.posts
+    @posts.reset options.posts
 
   routes:
     "/new": "newPost"

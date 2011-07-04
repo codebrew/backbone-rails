@@ -15,7 +15,7 @@ module Backbone
       end
     
       def create_dir_layout
-        %W{controllers models views templates}.each do |dir|
+        %W{routers models views templates}.each do |dir|
           empty_directory "app/assets/javascripts/backbone/#{dir}" 
           create_file "app/assets/javascripts/backbone/#{dir}/.gitkeep" unless options[:skip_git]
         end

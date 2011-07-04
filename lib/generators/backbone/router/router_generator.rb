@@ -2,11 +2,11 @@ require 'generators/backbone/resource_helpers'
 
 module Backbone
   module Generators
-    class ControllerGenerator < Rails::Generators::NamedBase
+    class RouterGenerator < Rails::Generators::NamedBase
       include Backbone::Generators::ResourceHelpers
       
       source_root File.expand_path("../templates", __FILE__)
-      desc "This generator creates a backbone controller with views and templates for the provided actions"
+      desc "This generator creates a backbone router with views and templates for the provided actions"
       
       argument :actions, :type => :array, :default => [], :banner => "action action"
       
@@ -24,8 +24,8 @@ module Backbone
         end
       end
       
-      def create_controller_files 
-        template 'controller.coffee', File.join(backbone_path, "controllers", class_path, "#{file_name}_controller.js.coffee")
+      def create_router_files 
+        template 'router.coffee', File.join(backbone_path, "routers", class_path, "#{file_name}_router.js.coffee")
       end
       
       def create_view_files
