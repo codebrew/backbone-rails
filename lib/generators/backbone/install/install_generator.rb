@@ -22,13 +22,13 @@ module Backbone
       end
     
       def create_app_file
-        template "app.coffee", "app/assets/javascripts/backbone/#{application_name.underscore}.js.coffee"
+        template "app.coffee", "app/assets/javascripts/backbone/#{application_name}.js.coffee"
       end
     
       protected
         def application_name
           if defined?(Rails) && Rails.application
-            Rails.application.class.name.split('::').first
+            Rails.application.class.name.split('::').first.underscore
           else
             "application"
           end
