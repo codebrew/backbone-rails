@@ -12,7 +12,7 @@ class <%= view_namespace %>.IndexView extends Backbone.View
     @options.<%= plural_name %>.each(this.addOne)
   
   addOne: (<%= singular_name %>) ->
-    view = new <%= view_namespace %>.<%= singular_name.capitalize %>View({model : <%= singular_name %>})
+    view = new <%= view_namespace %>.<%= singular_name.camelize %>View({model : <%= singular_name %>})
     this.$("tbody").append(view.render().el)
        
   render: ->
