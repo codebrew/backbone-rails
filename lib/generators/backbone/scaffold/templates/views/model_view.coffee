@@ -1,6 +1,6 @@
 <%= view_namespace %> ||= {}
 
-class <%= view_namespace %>.<%= singular_name.capitalize %>View extends Backbone.View
+class <%= view_namespace %>.<%= singular_name.camelize %>View extends Backbone.View
   template: JST["<%= jst singular_name %>"]
   
   events:

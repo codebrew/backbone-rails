@@ -7,19 +7,19 @@ module Backbone
       end
       
       def model_namespace
-        [application_name.capitalize, "Models", class_name].join(".")
+        [application_name, "Models", class_name].join(".")
       end
       
       def collection_namespace
-        [application_name.capitalize, "Collections", plural_name.capitalize].join(".")
+        [application_name, "Collections", plural_name.camelize].join(".")
       end
       
       def view_namespace
-        [application_name.capitalize, "Views", plural_name.capitalize].join(".")
+        [application_name, "Views", plural_name.camelize].join(".")
       end
       
       def router_namespace
-        [application_name.capitalize, "Routers", plural_name.capitalize].join(".")
+        [application_name, "Routers", plural_name.camelize].join(".")
       end
       
       def jst(action)
