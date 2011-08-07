@@ -58,6 +58,7 @@ Created a new rails 3.1 application called `blog`.
     rails new blog
 
 Edit your Gemfile and add
+
     gem 'rails-backbone'
 
 Install the gem and generate scaffolding.
