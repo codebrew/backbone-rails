@@ -22,7 +22,6 @@
     var params = _.extend({
       type:         type,
       dataType:     'json',
-      processData:  false,
       beforeSend: function( xhr ) {
         var token = $('meta[name="csrf-token"]').attr('content');
         if (token) xhr.setRequestHeader('X-CSRF-Token', token);
@@ -48,6 +47,11 @@
       params.data = JSON.stringify(data)
     }
 
+    // Don't process data on a non-GET request.
+    if (params.type !== 'GET') {
+      params.processData = false;
+    }
+    
     // Make the request.
     return $.ajax(params);
   }

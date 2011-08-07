@@ -1,12 +1,9 @@
 source "http://rubygems.org"
 
-# gem 'rails', '3.1.0.beta1'
-
 # Bundle edge Rails instead:
-gem 'rails', :git => 'git://github.com/rails/rails.git'
+gem 'rails', :git => "git://github.com/rails/rails.git", :branch => "3-1-stable"
 gem 'tilt', :git => "git://github.com/rtomayko/tilt.git"
-gem 'sprockets', "= 2.0.0.beta.10"
-# gem 'sprockets', :git => "git://github.com/sstephenson/sprockets.git"
+gem 'sprockets', "~> 2.0.0.beta.13"
 gem 'execjs', :git => "git://github.com/sstephenson/execjs.git"
 
 gem 'sqlite3'
