@@ -53,11 +53,16 @@ This generator creates a router, views, templates, model and collection to creat
 
 ## Example Usage
 
-Say we have just created a new rails 3.1 application called `blog`. Edit your gemfile and add `gem rails-backbone`.
+Created a new rails 3.1 application called `blog`.
+
+    rails new blog --skip-bundle
+    bundle install
+
+Edit your Gemfile and add 
+    gem 'rails-backbone`
 
 Install the gem and generate scaffolding.
 
-    bundle install
     rails g backbone:install
     rails g scaffold Post title:string content:string
     rake db:migrate
@@ -65,6 +70,7 @@ Install the gem and generate scaffolding.
     
 You now have installed the backbone-rails gem, setup a default directory structure for your frontend backbone code. 
 Then you generated the usual rails server side crud scaffolding and finally generated backbone.js code to provide a simple single page crud app.
+
 You have one last step:
 
 Edit your posts index view `app/views/posts/index.html.erb` with the following contents:
@@ -73,6 +79,7 @@ Edit your posts index view `app/views/posts/index.html.erb` with the following c
 
     <script type="text/javascript">
       $(function() {
+        // Blog is the app name
         window.router = new Blog.Routers.PostsRouter({posts: <%= @posts.to_json.html_safe -%>});
         Backbone.history.start();
       });
