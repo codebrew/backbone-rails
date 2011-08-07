@@ -53,7 +53,12 @@ This generator creates a router, views, templates, model and collection to creat
 
 ## Example Usage
 
-Say we have just created a new rails 3.1 application called `blog`. Edit your gemfile and add `gem rails-backbone`.
+Created a new rails 3.1 application called `blog`.
+
+    rails new blog
+
+Edit your Gemfile and add
+    gem 'rails-backbone'
 
 Install the gem and generate scaffolding.
 
@@ -73,6 +78,7 @@ Edit your posts index view `app/views/posts/index.html.erb` with the following c
 
     <script type="text/javascript">
       $(function() {
+        // Blog is the app name
         window.router = new Blog.Routers.PostsRouter({posts: <%= @posts.to_json.html_safe -%>});
         Backbone.history.start();
       });
