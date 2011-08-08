@@ -87,6 +87,7 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.16)
+    mocha (0.9.12)
     multi_json (1.0.3)
     polyglot (0.3.2)
     rack (1.3.2)
@@ -133,6 +134,7 @@ DEPENDENCIES
   ejs
   execjs!
   jquery-rails
+  mocha (>= 0.9.12)
   rails!
   ruby-debug19
   sass

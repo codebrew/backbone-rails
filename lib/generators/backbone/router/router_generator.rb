@@ -38,9 +38,6 @@ module Backbone
            template "template.jst", @jst_path
          end
       end
-      
-      protected
-        
 
     end
   end

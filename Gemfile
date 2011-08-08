@@ -18,3 +18,5 @@ if RUBY_VERSION < '1.9'
 else
   gem "ruby-debug19"
 end
+
+gem "mocha", ">= 0.9.12"

@@ -1,6 +1,10 @@
+require 'generators/backbone/resource_helpers'
+
 module Backbone
   module Generators
     class InstallGenerator < Rails::Generators::Base
+      include Backbone::Generators::ResourceHelpers
+      
       source_root File.expand_path("../templates", __FILE__)
   
       desc "This generator installs backbone.js with a default folder layout in app/assets/javascripts/backbone"
@@ -10,7 +14,7 @@ module Backbone
                                       
       def inject_backbone
         inject_into_file "app/assets/javascripts/application.js", :before => "//= require_tree" do
-          "//= require underscore\n//= require backbone\n//= require backbone_rails_sync\n//= require backbone_datalink\n//= require backbone/#{application_name}\n"
+          "//= require underscore\n//= require backbone\n//= require backbone_rails_sync\n//= require backbone_datalink\n//= require backbone/#{js_app_name}\n"
         end
       end
     
@@ -22,17 +26,8 @@ module Backbone
       end
     
       def create_app_file
-        template "app.coffee", "app/assets/javascripts/backbone/#{application_name}.js.coffee"
+        template "app.coffee", "app/assets/javascripts/backbone/#{js_app_name}.js.coffee"
       end
-    
-      protected
-        def application_name
-          if defined?(Rails) && Rails.application
-            Rails.application.class.name.split('::').first
-          else
-            "application"
-          end
-        end
      
     end
   end
