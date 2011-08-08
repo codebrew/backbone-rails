@@ -21,6 +21,20 @@ class InstallGeneratorTest < Rails::Generators::TestCase
     assert_file "#{backbone_path}/dummy.js.coffee", /window\.Dummy/
   end
   
+  test "Assert application coffeescript file is created for two word application name" do
+    Rails.application.class.stubs(:name).returns("FooBar::Application")
+    run_generator
+    
+    assert_file "#{backbone_path}/foo_bar.js.coffee", /window\.FooBar/
+  end
+  
+  test "Assert application require is properly setup for two word application name" do
+    Rails.application.class.stubs(:name).returns("FooBar::Application")
+    run_generator
+    
+    assert_file "app/assets/javascripts/application.js", /require backbone\/foo_bar/
+  end
+  
   test "Assert backbone directory structure is created" do
     run_generator
     

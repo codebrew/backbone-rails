@@ -7,7 +7,7 @@ module Backbone
       end
       
       def model_namespace
-        [application_name.camelize, "Models", class_name].join(".")
+        [js_app_name, "Models", class_name].join(".")
       end
       
       def singular_model_name
@@ -19,15 +19,15 @@ module Backbone
       end
       
       def collection_namespace
-        [application_name.camelize, "Collections", plural_name.camelize].join(".")
+        [js_app_name, "Collections", plural_name.camelize].join(".")
       end
       
       def view_namespace
-        [application_name.camelize, "Views", plural_name.camelize].join(".")
+        [js_app_name, "Views", plural_name.camelize].join(".")
       end
       
       def router_namespace
-        [application_name.camelize, "Routers", plural_name.camelize].join(".")
+        [js_app_name, "Routers", plural_name.camelize].join(".")
       end
       
       def jst(action)
@@ -35,7 +35,7 @@ module Backbone
       end
       
       def js_app_name
-        uncapitalize application_name.camelize
+        application_name.camelize
       end
       
       def application_name

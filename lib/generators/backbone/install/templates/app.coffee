@@ -4,7 +4,7 @@
 #= require_tree ./views
 #= require_tree ./routers
 
-window.<%= application_name.camelize %> =
+window.<%= js_app_name %> =
   Models: {}
   Collections: {}
   Routers: {}
