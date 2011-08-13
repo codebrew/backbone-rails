@@ -1,4 +1,4 @@
-# Backbone-Rails
+# Backbone-Rails ![build status](http://travis-ci.org/codebrew/backbone-rails.png)
 
 Easily setup and use backbone.js (0.5.0) with rails 3.1
 
