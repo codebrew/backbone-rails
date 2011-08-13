@@ -1,4 +1,4 @@
-//     Backbone.js 0.5.2
+//     Backbone.js 0.5.3
 //     (c) 2010 Jeremy Ashkenas, DocumentCloud Inc.
 //     Backbone may be freely distributed under the MIT license.
 //     For all details and documentation:
@@ -25,7 +25,7 @@
   }
 
   // Current version of the library. Keep in sync with `package.json`.
-  Backbone.VERSION = '0.5.2';
+  Backbone.VERSION = '0.5.3';
 
   // Require Underscore, if we're on the server, and it's not already present.
   var _ = root._;
@@ -766,7 +766,7 @@
           fragment = window.location.hash;
         }
       }
-      return fragment.replace(hashStrip, '');
+      return decodeURIComponent(fragment.replace(hashStrip, ''));
     },
 
     // Start the hash change handling, returning `true` if the current URL matches
@@ -812,7 +812,10 @@
         this.fragment = loc.hash.replace(hashStrip, '');
         window.history.replaceState({}, document.title, loc.protocol + '//' + loc.host + this.options.root + this.fragment);
       }
-      return this.loadUrl();
+
+      if (!this.options.silent) {
+        return this.loadUrl();
+      }
     },
 
     // Add a route to be tested when the fragment changes. Routes added later may
@@ -1071,7 +1074,7 @@
     }
 
     // Don't process data on a non-GET request.
-    if (params.type !== 'GET' && ! Backbone.emulateJSON) {
+    if (params.type !== 'GET' && !Backbone.emulateJSON) {
       params.processData = false;
     }
 
