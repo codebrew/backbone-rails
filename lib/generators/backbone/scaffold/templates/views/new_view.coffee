@@ -8,9 +8,9 @@ class <%= view_namespace %>.NewView extends Backbone.View
     
   constructor: (options) ->
     super(options)
-    @options.model = new @options.collection.model()
+    @model = new @collection.model()
 
-    @options.model.bind("change:errors", () =>
+    @model.bind("change:errors", () =>
       this.render()
     )
     
@@ -18,20 +18,20 @@ class <%= view_namespace %>.NewView extends Backbone.View
     e.preventDefault()
     e.stopPropagation()
       
-    @options.model.unset("errors")
+    @model.unset("errors")
     
-    @options.collection.create(@options.model.toJSON(), 
-      success: (model) =>
-        @options.model = model
-        window.location.hash = "/#{@options.model.id}"
+    @collection.create(@model.toJSON(), 
+      success: (<%= singular_name %>) =>
+        @model = <%= singular_name %>
+        window.location.hash = "/#{@model.id}"
         
-      error: (model, jqXHR) =>
-        @options.model.set({errors: $.parseJSON(jqXHR.responseText)})
+      error: (<%= singular_name %>, jqXHR) =>
+        @model.set({errors: $.parseJSON(jqXHR.responseText)})
     )
     
   render: ->
-    $(this.el).html(@template(@options.model.toJSON() ))
+    $(this.el).html(@template(@model.toJSON() ))
     
-    this.$("form").backboneLink(@options.model)
+    this.$("form").backboneLink(@model)
     
     return this
