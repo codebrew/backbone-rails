@@ -1,24 +1,24 @@
 Dummy.Views.Posts ||= {}
 
 class Dummy.Views.Posts.EditView extends Backbone.View
-  template: JST["backbone/templates/posts/edit"]
+  template : JST["backbone/templates/posts/edit"]
   
-  events:
-    "submit #edit-post": "update"
+  events :
+    "submit #edit-post" : "update"
     
-  update: (e) ->
+  update : (e) ->
     e.preventDefault()
     e.stopPropagation()
     
-    @options.model.save(null,
-      success:(model) =>
-        @options.model = model
-        window.location.hash = "/#{@options.model.id}"
+    @model.save(null,
+      success : (post) =>
+        @model = post
+        window.location.hash = "/#{@model.id}"
     )
     
-  render: ->
-    $(this.el).html(this.template(@options.model.toJSON() ))
+  render : ->
+    $(this.el).html(this.template(@model.toJSON() ))
     
-    this.$("form").backboneLink(@options.model)
+    this.$("form").backboneLink(@model)
     
     return this

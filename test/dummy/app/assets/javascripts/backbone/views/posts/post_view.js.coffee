@@ -9,11 +9,11 @@ class Dummy.Views.Posts.PostView extends Backbone.View
   tagName: "tr"
   
   destroy: () ->
-    @options.model.destroy()
+    @model.destroy()
     this.remove()
     
     return false
     
   render: ->
-    $(this.el).html(@template(@options.model.toJSON() ))    
+    $(this.el).html(@template(@model.toJSON() ))    
     return this

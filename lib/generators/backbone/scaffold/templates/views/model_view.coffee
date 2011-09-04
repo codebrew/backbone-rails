@@ -9,11 +9,11 @@ class <%= view_namespace %>.<%= singular_name.camelize %>View extends Backbone.V
   tagName: "tr"
   
   destroy: () ->
-    @options.model.destroy()
+    @model.destroy()
     this.remove()
     
     return false
     
   render: ->
-    $(this.el).html(@template(@options.model.toJSON() ))    
+    $(this.el).html(@template(@model.toJSON() ))    
     return this

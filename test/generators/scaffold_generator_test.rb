@@ -46,7 +46,7 @@ class ScaffoldGeneratorTest < Rails::Generators::TestCase
     
     assert_file "#{backbone_path}/views/posts/show_view.js.coffee" do |view|
       assert_match /class Dummy.Views.Posts.ShowView extends Backbone.View/, view
-      assert_match /#{Regexp.escape('@template(@options.model.toJSON() )')}/, view
+      assert_match /#{Regexp.escape('@template(@model.toJSON() )')}/, view
       assert_match /#{Regexp.escape('template: JST["backbone/templates/posts/show"]')}/, view
     end
     
@@ -60,12 +60,13 @@ class ScaffoldGeneratorTest < Rails::Generators::TestCase
     assert_file "#{backbone_path}/views/posts/edit_view.js.coffee" do |view|
       assert_match /class Dummy.Views.Posts.EditView extends Backbone.View/, view
       assert_match /#{Regexp.escape('JST["backbone/templates/posts/edit"]')}/, view
-      assert_match /#{Regexp.escape('"submit #edit-post": "update"')}/, view
+      assert_match /#{Regexp.escape('"submit #edit-post" : "update"')}/, view
+      assert_match /#{Regexp.escape('success : (post) =>')}/, view
     end
     
     assert_file "#{backbone_path}/views/posts/post_view.js.coffee" do |view|
       assert_match /class Dummy.Views.Posts.PostView extends Backbone.View/, view
-      assert_match /#{Regexp.escape('@template(@options.model.toJSON() )')}/, view
+      assert_match /#{Regexp.escape('@template(@model.toJSON() )')}/, view
       assert_match /#{Regexp.escape('JST["backbone/templates/posts/post"]')}/, view
     end
   end
@@ -81,7 +82,7 @@ class ScaffoldGeneratorTest < Rails::Generators::TestCase
     
     assert_file "#{backbone_path}/views/blog_posts/show_view.js.coffee" do |view|
       assert_match /class Dummy.Views.BlogPosts.ShowView extends Backbone.View/, view
-      assert_match /#{Regexp.escape('@template(@options.model.toJSON() )')}/, view
+      assert_match /#{Regexp.escape('@template(@model.toJSON() )')}/, view
       assert_match /#{Regexp.escape('template: JST["backbone/templates/blog_posts/show"]')}/, view
     end
     
@@ -95,12 +96,13 @@ class ScaffoldGeneratorTest < Rails::Generators::TestCase
     assert_file "#{backbone_path}/views/blog_posts/edit_view.js.coffee" do |view|
       assert_match /class Dummy.Views.BlogPosts.EditView extends Backbone.View/, view
       assert_match /#{Regexp.escape('JST["backbone/templates/blog_posts/edit"]')}/, view
-      assert_match /#{Regexp.escape('"submit #edit-blog_post": "update"')}/, view
+      assert_match /#{Regexp.escape('"submit #edit-blog_post" : "update"')}/, view
+      assert_match /#{Regexp.escape('success : (blog_post) =>')}/, view
     end
     
     assert_file "#{backbone_path}/views/blog_posts/blog_post_view.js.coffee" do |view|
       assert_match /class Dummy.Views.BlogPosts.BlogPostView extends Backbone.View/, view
-      assert_match /#{Regexp.escape('@template(@options.model.toJSON() )')}/, view
+      assert_match /#{Regexp.escape('@template(@model.toJSON() )')}/, view
       assert_match /#{Regexp.escape('JST["backbone/templates/blog_posts/blog_post"]')}/, view
     end
   end
