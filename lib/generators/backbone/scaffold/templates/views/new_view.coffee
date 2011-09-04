@@ -11,7 +11,7 @@ class <%= view_namespace %>.NewView extends Backbone.View
     @model = new @collection.model()
 
     @model.bind("change:errors", () =>
-      this.render()
+      @render()
     )
 
   save: (e) ->
@@ -30,8 +30,8 @@ class <%= view_namespace %>.NewView extends Backbone.View
     )
 
   render: ->
-    $(this.el).html(@template(@model.toJSON() ))
+    $(@el).html(@template(@model.toJSON() ))
 
-    this.$("form").backboneLink(@model)
+    @$("form").backboneLink(@model)
 
     return this
