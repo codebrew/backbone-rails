@@ -30,7 +30,7 @@ class Dummy.Views.Posts.NewView extends Backbone.View
     )
     
   render: ->
-    $(this.el).html(this.template(@options.model.toJSON() ))
+    $(this.el).html(@template(@options.model.toJSON() ))
     
     this.$("form").backboneLink(@options.model)
     

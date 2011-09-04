@@ -15,5 +15,5 @@ class Dummy.Views.Posts.PostView extends Backbone.View
     return false
     
   render: ->
-    $(this.el).html(this.template(this.options.model.toJSON() ))    
+    $(this.el).html(@template(@options.model.toJSON() ))    
     return this
