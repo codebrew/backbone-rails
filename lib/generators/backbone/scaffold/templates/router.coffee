@@ -20,13 +20,12 @@ class <%= router_namespace %>Router extends Backbone.Router
 
   show: (id) ->
     <%= singular_name %> = @<%= plural_name %>.get(id)
-    
+
     @view = new <%= "#{view_namespace}.ShowView(model: #{singular_name})" %>
     $("#<%= plural_name %>").html(@view.render().el)
-    
+
   edit: (id) ->
     <%= singular_name %> = @<%= plural_name %>.get(id)
 
     @view = new <%= "#{view_namespace}.EditView(model: #{singular_name})" %>
     $("#<%= plural_name %>").html(@view.render().el)
-  
