@@ -1,4 +1,4 @@
-# Backbone-Rails [![Build Status](https://secure.travis-ci.org/codebrew/backbone-rails.png)](https://secure.travis-ci.org/codebrew/backbone-rails)
+# Backbone-Rails [![Build Status](https://secure.travis-ci.org/codebrew/backbone-rails.png)](http://travis-ci.org/codebrew/backbone-rails)
 
 Easily setup and use backbone.js (0.5.0) with rails 3.1
 
