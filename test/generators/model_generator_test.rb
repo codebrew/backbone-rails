@@ -11,17 +11,19 @@ class ModelGeneratorTest < Rails::Generators::TestCase
     
     assert_file "#{backbone_path}/models/post.js.coffee", do |model|
       model_class = Regexp.escape("class Dummy.Models.Post extends Backbone.Model")
-      collection_class = Regexp.escape("class Dummy.Collections.PostsCollection extends Backbone.Collection")
-      
+
       assert_match /#{model_class}/, model
-      assert_match /#{collection_class}/, model
-      
       assert_match /paramRoot: 'post'/, model
-      assert_match /url: '\/posts'/, model
-      
       assert_match /defaults:/, model
       assert_match /title: null/, model
       assert_match /content: null/, model
+    end
+
+    assert_file "#{backbone_path}/collections/posts_collection.js.coffee", do |collection|
+      collection_class = Regexp.escape("class Dummy.Collections.PostsCollection extends Backbone.Collection")
+
+      assert_match /#{collection_class}/, collection
+      assert_match /url: '\/posts'/, collection
     end
     
   end
@@ -31,19 +33,21 @@ class ModelGeneratorTest < Rails::Generators::TestCase
     
     assert_file "#{backbone_path}/models/blog_post.js.coffee", do |model|
       model_class = Regexp.escape("class Dummy.Models.BlogPost extends Backbone.Model")
-      collection_class = Regexp.escape("class Dummy.Collections.BlogPostsCollection extends Backbone.Collection")
-      
+
       assert_match /#{model_class}/, model
-      assert_match /#{collection_class}/, model
-      
       assert_match /paramRoot: 'blog_post'/, model
-      assert_match /url: '\/blog_posts'/, model
-      
       assert_match /defaults:/, model
       assert_match /title: null/, model
       assert_match /content: null/, model
     end
     
+    assert_file "#{backbone_path}/collections/blog_posts_collection.js.coffee", do |collection|
+      collection_class = Regexp.escape("class Dummy.Collections.BlogPostsCollection extends Backbone.Collection")
+
+      assert_match /#{collection_class}/, collection
+      assert_match /url: '\/blog_posts'/, collection
+    end
+
   end
   
 end

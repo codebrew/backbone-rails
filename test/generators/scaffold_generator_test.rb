@@ -149,23 +149,27 @@ class ScaffoldGeneratorTest < Rails::Generators::TestCase
     run_generator
     
     assert_file "#{backbone_path}/models/post.js.coffee" do |model|
-      assert_match /url: '\/posts'/, model
       assert_match /paramRoot: 'post'/, model
-      
       assert_match /title: null/, model
       assert_match /content: null/, model
+    end
+
+    assert_file "#{backbone_path}/collections/posts_collection.js.coffee" do |collection|
+      assert_match /url: '\/posts'/, collection
     end
   end
   
   test "backbone model generator is invoked for model with two words" do
     run_generator %w(BlogPost title:string content:string)
-    
+
     assert_file "#{backbone_path}/models/blog_post.js.coffee" do |model|
-      assert_match /url: '\/blog_posts'/, model
       assert_match /paramRoot: 'blog_post'/, model
-      
       assert_match /title: null/, model
       assert_match /content: null/, model
+    end
+
+    assert_file "#{backbone_path}/collections/blog_posts_collection.js.coffee" do |collection|
+      assert_match /url: '\/blog_posts'/, collection
     end
   end
   
