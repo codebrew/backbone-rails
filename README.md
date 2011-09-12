@@ -24,6 +24,7 @@ Running `rails g backbone:install` will create the following directory structure
   
     routers/
     models/
+    collections/
     templates/
     views/
     
@@ -37,7 +38,7 @@ The generators will only create client side code (javascript).
 
     rails g backbone:model
     
-This generator creates a backbone model and collection inside `app/assets/javascript/backbone/models` to be used to talk to the rails backend.
+This generator creates a backbone model and corresponding collection to be used to talk to the rails backend.
 
 ### Routers
     
