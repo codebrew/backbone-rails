@@ -41,7 +41,7 @@ class ScaffoldGeneratorTest < Rails::Generators::TestCase
     assert_file "#{backbone_path}/views/posts/index_view.js.coffee" do |view|
       assert_match /#{Regexp.escape('JST["backbone/templates/posts/index"]')}/, view
       assert_match /#{Regexp.escape('@template(posts: @options.posts.toJSON() ))')}/, view
-      assert_match /#{Regexp.escape("new Dummy.Views.Posts.PostView({model : post})")}/, view
+      assert_match /#{Regexp.escape("new Dummy.Views.Posts.PostView({model : post, collection: @options.posts })")}/, view
     end
     
     assert_file "#{backbone_path}/views/posts/show_view.js.coffee" do |view|
@@ -79,7 +79,7 @@ class ScaffoldGeneratorTest < Rails::Generators::TestCase
     assert_file "#{backbone_path}/views/blog_posts/index_view.js.coffee" do |view|
       assert_match /#{Regexp.escape('JST["backbone/templates/blog_posts/index"]')}/, view
       assert_match /#{Regexp.escape('@template(blogPosts: @options.blogPosts.toJSON() ))')}/, view
-      assert_match /#{Regexp.escape("new Dummy.Views.BlogPosts.BlogPostView({model : blogPost})")}/, view
+      assert_match /#{Regexp.escape("new Dummy.Views.BlogPosts.BlogPostView({model : blogPost, collection: @options.blogPosts })")}/, view
     end
     
     assert_file "#{backbone_path}/views/blog_posts/show_view.js.coffee" do |view|
