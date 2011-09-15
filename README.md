@@ -5,7 +5,7 @@ Easily setup and use backbone.js (0.5.0) with rails 3.1
 ## Rails 3.1 setup
 This gem requires the use of rails 3.1, coffeescript and the new rails asset pipeline provided by sprockets.
 
-This gem vendors the latest version of underscore.js and backbones.js for Rails 3.1 and greater. The files will be added to the asset pipeline and available for you to use. 
+This gem vendors the latest version of underscore.js and backbone.js for Rails 3.1 and greater. The files will be added to the asset pipeline and available for you to use. 
     
 ### Installation
 
