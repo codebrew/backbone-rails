@@ -30,7 +30,7 @@ Running `rails g backbone:install` will create the following directory structure
 It will also create a toplevel app_name.coffee file to setup namespacing and setup initial requires.
     
 ## Generators
-backbone-rails provides 3 simple generators to help get you started using bacbone.js with rails 3.1. 
+backbone-rails provides 3 simple generators to help get you started using backbone.js with rails 3.1. 
 The generators will only create client side code (javascript).
 
 ### Model Generator
