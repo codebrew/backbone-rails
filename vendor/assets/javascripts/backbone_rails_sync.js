@@ -51,7 +51,19 @@
     if (params.type !== 'GET') {
       params.processData = false;
     }
-    
+    // Trigger the sync events
+    var success = options.success;
+    var error = options.error;
+    options.success = function(resp, status, xhr) {
+      model.trigger('sync:end');
+      return success(resp, status, xhr);
+    };
+    options.error = function(resp, status, xhr){
+      model.trigger('sync:end');
+      return error(resp, status, xhr);
+    };
+    model.trigger('sync:start');
+
     // Make the request.
     return $.ajax(params);
   }
