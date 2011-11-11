@@ -2,6 +2,8 @@
 
 Easily setup and use backbone.js (0.5.0) with rails 3.1
 
+Follow [@TheRyanFitz on Twitter](http://twitter.com/#!/TheRyanFitz). Tweet some praise or ask any questions you have about the project.
+
 ## Rails 3.1 setup
 This gem requires the use of rails 3.1, coffeescript and the new rails asset pipeline provided by sprockets.
 

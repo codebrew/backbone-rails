@@ -1,6 +1,6 @@
 source "http://rubygems.org"
 
-gem "rails", "~> 3.1.0"
+gem "rails", "~> 3.1.1"
 # Bundle edge Rails instead:
 # gem 'rails', :git => "git://github.com/rails/rails.git", :branch => "3-1-stable"
 # gem 'tilt', :git => "git://github.com/rtomayko/tilt.git"
@@ -21,3 +21,4 @@ else
 end
 
 gem "mocha", ">= 0.9.12"
+gem "turn", ">= 0.8.2"
