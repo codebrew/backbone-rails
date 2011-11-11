@@ -25,6 +25,8 @@
       beforeSend: function( xhr ) {
         var token = $('meta[name="csrf-token"]').attr('content');
         if (token) xhr.setRequestHeader('X-CSRF-Token', token);
+
+        model.trigger('sync:start');
       }
     }, options);
 
@@ -51,6 +53,13 @@
     if (params.type !== 'GET') {
       params.processData = false;
     }
+
+    // Trigger the sync end event
+    var complete = options.complete;
+    options.complete = function(jqXHR, textStatus) {
+      model.trigger('sync:end');
+      if (complete) complete(jqXHR, textStatus);
+    };
     
     // Make the request.
     return $.ajax(params);
