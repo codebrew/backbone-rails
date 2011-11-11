@@ -20,6 +20,8 @@ else
   gem "ruby-debug19"
 end
 
-gem "mocha", ">= 0.9.12"
-gem "turn", ">= 0.8.2"
-gem "minitest"
+group :test do
+  gem "mocha", ">= 0.9.12"
+  gem "turn", ">= 0.8.2"
+  gem "minitest"
+end

@@ -4,11 +4,11 @@ class Dummy.Routers.PostsRouter extends Backbone.Router
     @posts.reset options.posts
 
   routes:
-    "/new": "newPost"
-    "/index": "index"
-    "/:id/edit": "edit"
-    "/:id": "show"
-    ".*": "index"
+    "/new"      : "newPost"
+    "/index"    : "index"
+    "/:id/edit" : "edit"
+    "/:id"      : "show"
+    ".*"        : "index"
 
   newPost: ->
     @view = new Dummy.Views.Posts.NewView(collection: @posts)
@@ -20,13 +20,12 @@ class Dummy.Routers.PostsRouter extends Backbone.Router
 
   show: (id) ->
     post = @posts.get(id)
-    
+
     @view = new Dummy.Views.Posts.ShowView(model: post)
     $("#posts").html(@view.render().el)
-    
+
   edit: (id) ->
     post = @posts.get(id)
 
     @view = new Dummy.Views.Posts.EditView(model: post)
     $("#posts").html(@view.render().el)
-  
