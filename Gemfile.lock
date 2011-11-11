@@ -55,6 +55,7 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.17.2)
+    minitest (2.5.1)
     mocha (0.9.12)
     multi_json (1.0.3)
     polyglot (0.3.3)
@@ -120,6 +121,7 @@ DEPENDENCIES
   coffee-script
   ejs
   jquery-rails
+  minitest
   mocha (>= 0.9.12)
   rails (~> 3.1.1)
   ruby-debug19

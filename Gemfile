@@ -22,3 +22,4 @@ end
 
 gem "mocha", ">= 0.9.12"
 gem "turn", ">= 0.8.2"
+gem "minitest"
