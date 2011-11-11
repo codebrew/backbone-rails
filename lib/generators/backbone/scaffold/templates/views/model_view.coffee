@@ -15,5 +15,5 @@ class <%= view_namespace %>.<%= singular_name.camelize %>View extends Backbone.V
     return false
 
   render: ->
-    $(this.el).html(@template(@model.toJSON() ))
+    $(@el).html(@template(@model.toJSON() ))
     return this
