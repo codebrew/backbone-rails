@@ -87,5 +87,15 @@ Edit your posts index view `app/views/posts/index.html.erb` with the following c
       });
     </script>
     
+If you prefer haml, this is equivalent to inserting the following code into `app/views/posts/index.html.haml`:
+
+    :javascript
+      $(function() {
+        // Blog is the app name
+        window.router = new Blog.Routers.PostsRouter({posts: #{@posts.to_json.html_safe});
+        Backbone.history.start();
+      });
+
+    
 Now start your server `rails s` and browse to [localhost:3000/posts](http://localhost:3000/posts)
 You should now have a fully functioning single page crud app for Post models.
