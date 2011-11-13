@@ -92,7 +92,7 @@ If you prefer haml, this is equivalent to inserting the following code into `app
     :javascript
       $(function() {
         // Blog is the app name
-        window.router = new Blog.Routers.PostsRouter({posts: #{@posts.to_json.html_safe});
+        window.router = new Blog.Routers.PostsRouter({posts: #{@posts.to_json.html_safe}});
         Backbone.history.start();
       });
 
