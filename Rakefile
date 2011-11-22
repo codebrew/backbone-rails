@@ -34,7 +34,7 @@ namespace :backbone do
       'underscore.js'=>'https://github.com/documentcloud/underscore/raw/master/underscore.js',
       'backbone.js' => 'https://github.com/documentcloud/backbone/raw/master/backbone.js'
     }
-    
+
     vendor_dir = "vendor/assets/javascripts"
 
     require 'open-uri'

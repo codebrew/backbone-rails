@@ -5,12 +5,12 @@
     'delete': 'DELETE',
     'read'  : 'GET'
   };
-  
+
   var getUrl = function(object) {
     if (!(object && object.url)) return null;
     return _.isFunction(object.url) ? object.url() : object.url;
   };
-  
+
   var urlError = function() {
     throw new Error("A 'url' property or function must be specified");
   };
@@ -60,9 +60,9 @@
       model.trigger('sync:end');
       if (complete) complete(jqXHR, textStatus);
     };
-    
+
     // Make the request.
     return $.ajax(params);
   }
-  
+
 }).call(this);

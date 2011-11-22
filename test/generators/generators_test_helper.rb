@@ -5,9 +5,9 @@ module GeneratorsTestHelper
       setup :prepare_destination
     end
   end
-  
+
   def backbone_path
     "app/assets/javascripts/backbone"
   end
-  
+
 end
