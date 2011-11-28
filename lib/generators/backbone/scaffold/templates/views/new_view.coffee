@@ -15,9 +15,6 @@ class <%= view_namespace %>.NewView extends Backbone.View
     )
 
   save: (e) ->
-    e.preventDefault()
-    e.stopPropagation()
-
     @model.unset("errors")
 
     @collection.create(@model.toJSON(),
@@ -28,6 +25,8 @@ class <%= view_namespace %>.NewView extends Backbone.View
       error: (<%= singular_name %>, jqXHR) =>
         @model.set({errors: $.parseJSON(jqXHR.responseText)})
     )
+
+    return false
 
   render: ->
     $(@el).html(@template(@model.toJSON() ))
