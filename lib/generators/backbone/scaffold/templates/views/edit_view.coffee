@@ -7,14 +7,13 @@ class <%= view_namespace %>.EditView extends Backbone.View
     "submit #edit-<%= singular_name %>" : "update"
 
   update : (e) ->
-    e.preventDefault()
-    e.stopPropagation()
-
     @model.save(null,
       success : (<%= singular_name %>) =>
         @model = <%= singular_name %>
         window.location.hash = "/#{@model.id}"
     )
+
+    return false
 
   render : ->
     $(@el).html(@template(@model.toJSON() ))
