@@ -1,5 +1,5 @@
-//     Underscore.js 1.2.2
-//     (c) 2011 Jeremy Ashkenas, DocumentCloud Inc.
+//     Underscore.js 1.2.3
+//     (c) 2009-2011 Jeremy Ashkenas, DocumentCloud Inc.
 //     Underscore is freely distributable under the MIT license.
 //     Portions of Underscore are inspired or borrowed from Prototype,
 //     Oliver Steele's Functional, and John Resig's Micro-Templating.
@@ -25,6 +25,7 @@
 
   // Create quick reference variables for speed access to core prototypes.
   var slice            = ArrayProto.slice,
+      concat           = ArrayProto.concat,
       unshift          = ArrayProto.unshift,
       toString         = ObjProto.toString,
       hasOwnProperty   = ObjProto.hasOwnProperty;
@@ -67,7 +68,7 @@
   }
 
   // Current version.
-  _.VERSION = '1.2.2';
+  _.VERSION = '1.2.3';
 
   // Collection Functions
   // --------------------
@@ -107,7 +108,7 @@
   // **Reduce** builds up a single result from a list of values, aka `inject`,
   // or `foldl`. Delegates to **ECMAScript 5**'s native `reduce` if available.
   _.reduce = _.foldl = _.inject = function(obj, iterator, memo, context) {
-    var initial = memo !== void 0;
+    var initial = arguments.length > 2;
     if (obj == null) obj = [];
     if (nativeReduce && obj.reduce === nativeReduce) {
       if (context) iterator = _.bind(iterator, context);
@@ -121,20 +122,22 @@
         memo = iterator.call(context, memo, value, index, list);
       }
     });
-    if (!initial) throw new TypeError("Reduce of empty array with no initial value");
+    if (!initial) throw new TypeError('Reduce of empty array with no initial value');
     return memo;
   };
 
   // The right-associative version of reduce, also known as `foldr`.
   // Delegates to **ECMAScript 5**'s native `reduceRight` if available.
   _.reduceRight = _.foldr = function(obj, iterator, memo, context) {
+    var initial = arguments.length > 2;
     if (obj == null) obj = [];
     if (nativeReduceRight && obj.reduceRight === nativeReduceRight) {
       if (context) iterator = _.bind(iterator, context);
-      return memo !== void 0 ? obj.reduceRight(iterator, memo) : obj.reduceRight(iterator);
+      return initial ? obj.reduceRight(iterator, memo) : obj.reduceRight(iterator);
     }
-    var reversed = (_.isArray(obj) ? obj.slice() : _.toArray(obj)).reverse();
-    return _.reduce(reversed, iterator, memo, context);
+    var reversed = _.toArray(obj).reverse();
+    if (context && !initial) iterator = _.bind(iterator, context);
+    return initial ? _.reduce(reversed, iterator, memo, context) : _.reduce(reversed, iterator);
   };
 
   // Return the first value which passes a truth test. Aliased as `detect`.
@@ -189,7 +192,7 @@
   // Delegates to **ECMAScript 5**'s native `some` if available.
   // Aliased as `any`.
   var any = _.some = _.any = function(obj, iterator, context) {
-    iterator = iterator || _.identity;
+    iterator || (iterator = _.identity);
     var result = false;
     if (obj == null) return result;
     if (nativeSome && obj.some === nativeSome) return obj.some(iterator, context);
@@ -402,10 +405,11 @@
     });
   };
 
-  // Take the difference between one array and another.
+  // Take the difference between one array and a number of other arrays.
   // Only the elements present in just the first array will remain.
-  _.difference = function(array, other) {
-    return _.filter(array, function(value){ return !_.include(other, value); });
+  _.difference = function(array) {
+    var rest = _.flatten(slice.call(arguments, 1));
+    return _.filter(array, function(value){ return !_.include(rest, value); });
   };
 
   // Zip together multiple lists into a single array -- elements that share
@@ -432,7 +436,7 @@
       return array[i] === item ? i : -1;
     }
     if (nativeIndexOf && array.indexOf === nativeIndexOf) return array.indexOf(item);
-    for (i = 0, l = array.length; i < l; i++) if (array[i] === item) return i;
+    for (i = 0, l = array.length; i < l; i++) if (i in array && array[i] === item) return i;
     return -1;
   };
 
@@ -441,7 +445,7 @@
     if (array == null) return -1;
     if (nativeLastIndexOf && array.lastIndexOf === nativeLastIndexOf) return array.lastIndexOf(item);
     var i = array.length;
-    while (i--) if (array[i] === item) return i;
+    while (i--) if (i in array && array[i] === item) return i;
     return -1;
   };
 
@@ -579,7 +583,7 @@
   // conditionally execute the original function.
   _.wrap = function(func, wrapper) {
     return function() {
-      var args = [func].concat(slice.call(arguments));
+      var args = concat.apply([func], arguments);
       return wrapper.apply(this, args);
     };
   };
@@ -587,9 +591,9 @@
   // Returns a function that is the composition of a list of functions, each
   // consuming the return value of the function that follows.
   _.compose = function() {
-    var funcs = slice.call(arguments);
+    var funcs = arguments;
     return function() {
-      var args = slice.call(arguments);
+      var args = arguments;
       for (var i = funcs.length - 1; i >= 0; i--) {
         args = [funcs[i].apply(this, args)];
       }
@@ -677,8 +681,8 @@
     if (a._chain) a = a._wrapped;
     if (b._chain) b = b._wrapped;
     // Invoke a custom `isEqual` method if one is provided.
-    if (_.isFunction(a.isEqual)) return a.isEqual(b);
-    if (_.isFunction(b.isEqual)) return b.isEqual(a);
+    if (a.isEqual && _.isFunction(a.isEqual)) return a.isEqual(b);
+    if (b.isEqual && _.isFunction(b.isEqual)) return b.isEqual(a);
     // Compare `[[Class]]` names.
     var className = toString.call(a);
     if (className != toString.call(b)) return false;
@@ -687,13 +691,11 @@
       case '[object String]':
         // Primitives and their corresponding object wrappers are equivalent; thus, `"5"` is
         // equivalent to `new String("5")`.
-        return String(a) == String(b);
+        return a == String(b);
       case '[object Number]':
-        a = +a;
-        b = +b;
         // `NaN`s are equivalent, but non-reflexive. An `egal` comparison is performed for
         // other numeric values.
-        return a != a ? b != b : (a == 0 ? 1 / a == 1 / b : a == b);
+        return a != +a ? b != +b : (a == 0 ? 1 / a == 1 / b : a == +b);
       case '[object Date]':
       case '[object Boolean]':
         // Coerce dates and booleans to numeric primitive values. Dates are compared by their
@@ -733,7 +735,7 @@
       }
     } else {
       // Objects with different constructors are not equivalent.
-      if ("constructor" in a != "constructor" in b || a.constructor != b.constructor) return false;
+      if ('constructor' in a != 'constructor' in b || a.constructor != b.constructor) return false;
       // Deep compare objects.
       for (var key in a) {
         if (hasOwnProperty.call(a, key)) {
@@ -786,11 +788,10 @@
   };
 
   // Is a given variable an arguments object?
-  if (toString.call(arguments) == '[object Arguments]') {
-    _.isArguments = function(obj) {
-      return toString.call(obj) == '[object Arguments]';
-    };
-  } else {
+  _.isArguments = function(obj) {
+    return toString.call(obj) == '[object Arguments]';
+  };
+  if (!_.isArguments(arguments)) {
     _.isArguments = function(obj) {
       return !!(obj && hasOwnProperty.call(obj, 'callee'));
     };
@@ -915,7 +916,10 @@
          .replace(/\t/g, '\\t')
          + "');}return __p.join('');";
     var func = new Function('obj', '_', tmpl);
-    return data ? func(data, _) : function(data) { return func(data, _) };
+    if (data) return func(data, _);
+    return function(data) {
+      return func.call(this, data, _);
+    };
   };
 
   // The OOP Wrapper
