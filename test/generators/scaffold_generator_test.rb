@@ -118,14 +118,22 @@ class ScaffoldGeneratorTest < Rails::Generators::TestCase
     
     assert_file "#{backbone_path}/templates/posts/new.jst.ejs" do |view|
       assert_match /#{Regexp.escape('<form id="new-post" name="post">')}/, view
+      assert_match /#{Regexp.escape('<input type="text" name="title" id="title" value="<%= title %>" />')}/, view
+      assert_match /#{Regexp.escape('<input type="text" name="content" id="content" value="<%= content %>" />')}/, view
     end
     
     assert_file "#{backbone_path}/templates/posts/edit.jst.ejs" do |view|
       assert_match /#{Regexp.escape('<form id="edit-post" name="post">')}/, view
+      assert_match /#{Regexp.escape('<input type="text" name="title" id="title" value="<%= title %>" />')}/, view
+      assert_match /#{Regexp.escape('<input type="text" name="content" id="content" value="<%= content %>" />')}/, view
     end
     
     assert_file "#{backbone_path}/templates/posts/show.jst.ejs"
-    assert_file "#{backbone_path}/templates/posts/post.jst.ejs"
+    assert_file "#{backbone_path}/templates/posts/post.jst.ejs" do |view|
+      assert_match /#{Regexp.escape('<td><a href="#/<%= id %>">Show</a></td>')}/, view
+      assert_match /#{Regexp.escape('<td><a href="#/<%= id %>/destroy" class="destroy">Destroy</a></td>')}/, view
+      assert_match /#{Regexp.escape('<td><a href="#/<%= id %>/edit">Edit</a></td>')}/, view
+    end
   end
    
   test "generate template files for model with two words" do
@@ -135,10 +143,14 @@ class ScaffoldGeneratorTest < Rails::Generators::TestCase
 
     assert_file "#{backbone_path}/templates/blog_posts/new.jst.ejs" do |view|
       assert_match /#{Regexp.escape('<form id="new-blog_post" name="blog_post">')}/, view
+      assert_match /#{Regexp.escape('<input type="text" name="title" id="title" value="<%= title %>" />')}/, view
+      assert_match /#{Regexp.escape('<input type="text" name="content" id="content" value="<%= content %>" />')}/, view
     end
 
     assert_file "#{backbone_path}/templates/blog_posts/edit.jst.ejs" do |view|
       assert_match /#{Regexp.escape('<form id="edit-blog_post" name="blog_post">')}/, view
+      assert_match /#{Regexp.escape('<input type="text" name="title" id="title" value="<%= title %>" />')}/, view
+      assert_match /#{Regexp.escape('<input type="text" name="content" id="content" value="<%= content %>" />')}/, view
     end
 
     assert_file "#{backbone_path}/templates/blog_posts/show.jst.ejs"
