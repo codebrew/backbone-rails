@@ -59,6 +59,7 @@
     options.complete = function(jqXHR, textStatus) {
       model.trigger('sync:end');
       if (complete) complete(jqXHR, textStatus);
+      if (options.success) options.success(model, jqXHR);
     };
     
     // Make the request.
