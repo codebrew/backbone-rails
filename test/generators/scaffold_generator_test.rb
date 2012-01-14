@@ -118,10 +118,14 @@ class ScaffoldGeneratorTest < Rails::Generators::TestCase
     
     assert_file "#{backbone_path}/templates/posts/new.jst.ejs" do |view|
       assert_match /#{Regexp.escape('<form id="new-post" name="post">')}/, view
+      assert_match /#{Regexp.escape('<input type="text" name="title" id="title" value="<%= title %>" >')}/, view
+      assert_match /#{Regexp.escape('<input type="text" name="content" id="content" value="<%= content %>" >')}/, view
     end
     
     assert_file "#{backbone_path}/templates/posts/edit.jst.ejs" do |view|
       assert_match /#{Regexp.escape('<form id="edit-post" name="post">')}/, view
+      assert_match /#{Regexp.escape('<input type="text" name="title" id="title" value="<%= title %>" >')}/, view
+      assert_match /#{Regexp.escape('<input type="text" name="content" id="content" value="<%= content %>" >')}/, view
     end
     
     assert_file "#{backbone_path}/templates/posts/show.jst.ejs"
