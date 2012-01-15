@@ -28,11 +28,11 @@ end
 task :default => :test
 
 namespace :backbone do
-  desc "Download the latest versions of underscore and backbone.js from git"
+  desc "Download the latest released versions of underscore and backbone.js"
   task :download_latest do
     files = {
-      'underscore.js'=>'https://github.com/documentcloud/underscore/raw/master/underscore.js',
-      'backbone.js' => 'https://github.com/documentcloud/backbone/raw/master/backbone.js'
+      'underscore.js'=>'http://underscorejs.org/underscore.js',
+      'backbone.js' => 'http://backbonejs.org/backbone.js'
     }
     
     vendor_dir = "vendor/assets/javascripts"
