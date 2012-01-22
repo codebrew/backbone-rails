@@ -1,11 +1,11 @@
 # Backbone-Rails [![Build Status](https://secure.travis-ci.org/codebrew/backbone-rails.png)](http://travis-ci.org/codebrew/backbone-rails)
 
-Easily setup and use backbone.js (0.5.3) with rails 3.1
+Easily setup and use backbone.js (0.5.3) with rails 3.1 and greater
 
 Follow [@TheRyanFitz on Twitter](http://twitter.com/#!/TheRyanFitz). Tweet any questions or suggestions you have about the project.
 
-## Rails 3.1 setup
-This gem requires the use of rails 3.1, coffeescript and the new rails asset pipeline provided by sprockets.
+## Rails setup
+This gem requires the use of rails 3.1 and greater, coffeescript and the new rails asset pipeline provided by sprockets.
 
 This gem vendors the latest version of underscore.js and backbone.js for Rails 3.1 and greater. The files will be added to the asset pipeline and available for you to use. 
     
@@ -32,7 +32,7 @@ Running `rails g backbone:install` will create the following directory structure
 It will also create a toplevel app_name.coffee file to setup namespacing and setup initial requires.
     
 ## Generators
-backbone-rails provides 3 simple generators to help get you started using backbone.js with rails 3.1. 
+backbone-rails provides 3 simple generators to help get you started using backbone.js with rails 3.1 and greater. 
 The generators will only create client side code (javascript).
 
 ### Model Generator
@@ -55,7 +55,7 @@ This generator creates a router, views, templates, model and collection to creat
 
 ## Example Usage
 
-Created a new rails 3.1 application called `blog`.
+Created a new rails application called `blog`.
 
     rails new blog
 
