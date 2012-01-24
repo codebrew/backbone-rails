@@ -20,6 +20,19 @@ Then run the following commands:
     bundle install
     rails g backbone:install
 
+To include `backbone` into your asset pipeline, add the following line to your `application.js`
+
+    //= require rails_backbone
+    //= require backbone/<your-app-name>
+
+If you want to, you can also include all parts manually:
+
+    //= require underscore
+    //= require backbone
+    //= require backbone_rails_sync
+    //= require backbone_datalink
+    //= require backbone/<your-app-name>
+
 ### Layout and namespacing
 
 Running `rails g backbone:install` will create the following directory structure under `app/assets/javascripts/backbone`:
@@ -29,7 +42,7 @@ Running `rails g backbone:install` will create the following directory structure
     templates/
     views/
     
-It will also create a toplevel app_name.coffee file to setup namespacing and setup initial requires.
+It will also create a toplevel `app_name.coffee` file to setup namespacing and setup initial requires.
     
 ## Generators
 backbone-rails provides 3 simple generators to help get you started using backbone.js with rails 3.1 and greater. 
@@ -95,6 +108,12 @@ If you prefer haml, this is equivalent to inserting the following code into `app
         window.router = new Blog.Routers.PostsRouter({posts: #{@posts.to_json.html_safe}});
         Backbone.history.start();
       });
+
+
+Do not forget to edit your `app/assets/javascripts/application.js` and add
+
+    //= require rails_backbone
+    //= require backbone/blog
 
     
 Now start your server `rails s` and browse to [localhost:3000/posts](http://localhost:3000/posts)
