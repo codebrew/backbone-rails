@@ -1,6 +1,6 @@
 # Backbone-Rails [![Build Status](https://secure.travis-ci.org/codebrew/backbone-rails.png)](http://travis-ci.org/codebrew/backbone-rails)
 
-Easily setup and use backbone.js (0.9.1) with rails 3.1 and greater
+Easily setup and use backbone.js (0.9.2) with rails 3.1 and greater
 
 Follow [@TheRyanFitz on Twitter](http://twitter.com/#!/TheRyanFitz). Tweet any questions or suggestions you have about the project.
 
