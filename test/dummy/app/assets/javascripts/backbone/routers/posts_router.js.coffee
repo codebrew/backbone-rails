@@ -4,10 +4,10 @@ class Dummy.Routers.PostsRouter extends Backbone.Router
     @posts.reset options.posts
 
   routes:
-    "/new"      : "newPost"
-    "/index"    : "index"
-    "/:id/edit" : "edit"
-    "/:id"      : "show"
+    "new"      : "newPost"
+    "index"    : "index"
+    ":id/edit" : "edit"
+    ":id"      : "show"
     ".*"        : "index"
 
   newPost: ->

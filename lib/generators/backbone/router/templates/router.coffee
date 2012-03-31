@@ -3,7 +3,7 @@ class <%= router_namespace %>Router extends Backbone.Router
 
   routes:
   <% actions.each do |action| -%>
-  "/<%= action %>": "<%= action %>"
+  "<%= action %>": "<%= action %>"
   <% end -%>
 
 <% actions.each do |action| -%>
