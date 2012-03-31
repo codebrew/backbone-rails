@@ -2,7 +2,7 @@
 # project in your rails apps through git.
 Gem::Specification.new do |s|
   s.name = "rails-backbone"
-  s.version = "0.7.0"
+  s.version = "0.7.1"
   s.authors     = ["Ryan Fitzgerald", "Code Brew Studios"]
   s.email       = ["ryan@codebrewstudios.com"]
   s.homepage    = "http://github.com/codebrew/backbone-rails"
