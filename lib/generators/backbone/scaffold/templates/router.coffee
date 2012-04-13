@@ -4,10 +4,10 @@ class <%= router_namespace %>Router extends Backbone.Router
     @<%= plural_model_name %>.reset options.<%= plural_model_name %>
 
   routes:
-    "/new"      : "new<%= class_name %>"
-    "/index"    : "index"
-    "/:id/edit" : "edit"
-    "/:id"      : "show"
+    "new"      : "new<%= class_name %>"
+    "index"    : "index"
+    ":id/edit" : "edit"
+    ":id"      : "show"
     ".*"        : "index"
 
   new<%= class_name %>: ->
