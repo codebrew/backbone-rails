@@ -15,6 +15,7 @@
     throw new Error("A 'url' property or function must be specified");
   };
 
+  Backbone.originalSync = Backbone.sync
   Backbone.sync = function(method, model, options) {
     var type = methodMap[method];
 
