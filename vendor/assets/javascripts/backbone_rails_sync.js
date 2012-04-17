@@ -1,4 +1,4 @@
-(function() {
+(function($) {
   var methodMap = {
     'create': 'POST',
     'update': 'PUT',
@@ -65,4 +65,4 @@
     return $.ajax(params);
   }
   
-}).call(this);
+})(jQuery);
