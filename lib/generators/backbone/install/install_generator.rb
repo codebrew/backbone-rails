@@ -13,8 +13,14 @@ module Backbone
                               :desc => "Skip Git ignores and keeps"
                                       
       def inject_backbone
-        inject_into_file "app/assets/javascripts/application.js", :before => "//= require_tree" do
+        if File.exists?("app/assets/javascripts/application.js.coffee")
+          inject_into_file "app/assets/javascripts/application.js.coffee", :before => /#=\s*require_tree/ do
+          "#= require underscore\n#= require backbone\n#= require backbone_rails_sync\n#= require backbone_datalink\n#= require backbone/#{application_name.underscore}\n"
+          end
+        else 
+          inject_into_file "app/assets/javascripts/application.js", :before => /\/\/=\s*require_tree/ do
           "//= require underscore\n//= require backbone\n//= require backbone_rails_sync\n//= require backbone_datalink\n//= require backbone/#{application_name.underscore}\n"
+          end
         end
       end
     
