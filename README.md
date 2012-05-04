@@ -14,6 +14,10 @@ This gem vendors the latest version of underscore.js and backbone.js for Rails 3
 In your Gemfile, add this line:
 
     gem "rails-backbone"
+
+Since the pushState version of the gem has not been released yet, if you wish to use it you can fetch it from the git repository, adding this line to your Gemfile instead:
+
+    gem "rails-backbone", :git => git://github.com/zamith/backbone-rails.git
   
 Then run the following commands:
 
@@ -105,9 +109,22 @@ In order to make the scaffold compliant with pushState just add `--pushstate` at
 
     rails g backbone:scaffold Post title:string content:string --pushstate
 
-Take in consideration that the backbone history must be told to use push state:
+Take in consideration that the backbone history must be told to use push state and that when a link is clicked it must navigate to the page:
 
-    Backbone.history.start({pushState: true, root: "/posts"});
+    <div id="posts"></div>
+
+    <script type="text/javascript">
+      $(function() {
+        // Blog is the app name
+        window.router = new Blog.Routers.PostsRouter({posts: <%= @posts.to_json.html_safe -%>});
+        $("a").live('click', function(ev){
+          var href = $(this).attr("href");
+          window.router.navigate(href, {trigger: true});
+          return false;
+        });
+        Backbone.history.start({pushState: true, root: "/posts"});
+      });
+    </script>
 
 You must also edit the controller at `app/controllers/posts_controller.rb` so that the `create` and `update` actions remove the `id`, `created_at` and `updated_at` values from the params hash, since they are handled by the server. You can do that by adding this line on the top of each action:
 
