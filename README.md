@@ -83,7 +83,7 @@ Edit your posts index view `app/views/posts/index.html.erb` with the following c
       $(function() {
         // Blog is the app name
         window.router = new Blog.Routers.PostsRouter({posts: <%= @posts.to_json.html_safe -%>});
-        Backbone.history.start({pushState: true, root: "/posts"});
+        Backbone.history.start();
       });
     </script>
     
@@ -93,14 +93,24 @@ If you prefer haml, this is equivalent to inserting the following code into `app
       $(function() {
         // Blog is the app name
         window.router = new Blog.Routers.PostsRouter({posts: #{@posts.to_json.html_safe}});
-        Backbone.history.start({pushState: true, root: "/posts"});
+        Backbone.history.start();
       });
+
+Now start your server `rails s` and browse to [localhost:3000/posts](http://localhost:3000/posts)
+You should now have a fully functioning single page crud app for Post models.
+
+### Using pushState
+
+In order to make the scaffold compliant with pushState just add `--pushstate` at the end of the command, like so:
+
+    rails g backbone:scaffold Post title:string content:string --pushstate
+
+Take in consideration that the backbone history must be told to use push state:
+
+    Backbone.history.start({pushState: true, root: "/posts"});
 
 You must also edit the controller at `app/controllers/posts_controller.rb` so that the `create` and `update` actions remove the `id`, `created_at` and `updated_at` values from the params hash, since they are handled by the server. You can do that by adding this line on the top of each action:
 
     params[:post] = params[:post].except(:id, :created_at, :updated_at) if request.format == "application/json"
-
-Now start your server `rails s` and browse to [localhost:3000/posts](http://localhost:3000/posts)
-You should now have a fully functioning single page crud app for Post models.
 
 >Note that using real URLs requires your web server to be able to correctly render those pages, so back-end changes are required as well. For example, if you have a route of <code>/documents/100</code>, your web server must be able to serve that page, if the browser visits that URL directly.
