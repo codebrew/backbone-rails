@@ -23,7 +23,7 @@ class <%= view_namespace %>.NewView extends Backbone.View
     @collection.create(@model.toJSON(),
       success: (<%= singular_name %>) =>
         @model = <%= singular_name %>
-        window.location.hash = "/#{@model.id}"
+        window.router.navigate("#/#{@model.id}",true)
 
       error: (<%= singular_name %>, jqXHR) =>
         @model.set({errors: $.parseJSON(jqXHR.responseText)})

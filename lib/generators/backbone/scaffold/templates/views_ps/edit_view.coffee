@@ -13,7 +13,7 @@ class <%= view_namespace %>.EditView extends Backbone.View
     @model.save(null,
       success : (<%= singular_name %>) =>
         @model = <%= singular_name %>
-        window.location.hash = "/#{@model.id}"
+        window.router.navigate "#/#{@model.id}", true
     )
 
   render : ->

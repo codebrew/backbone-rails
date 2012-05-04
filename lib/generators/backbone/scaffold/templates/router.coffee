@@ -1,31 +1,14 @@
 class <%= router_namespace %>Router extends Backbone.Router
   initialize: (options) ->
-    @<%= plural_model_name %> = new <%= collection_namespace %>Collection()
-    @<%= plural_model_name %>.reset options.<%= plural_model_name %>
 
   routes:
-    "new"      : "new<%= class_name %>"
-    "index"    : "index"
-    ":id/edit" : "edit"
-    ":id"      : "show"
-    ".*"        : "index"
+  <% actions.each do |action| -%>
+  "<%= action %>": "<%= action %>"
+  <% end -%>
 
-  new<%= class_name %>: ->
-    @view = new <%= "#{view_namespace}.NewView(collection: @#{plural_name})" %>
+<% actions.each do |action| -%>
+  <%= action %>: ->
+    @view = new <%= "#{view_namespace}.#{action.camelize}View()" %>
     $("#<%= plural_name %>").html(@view.render().el)
 
-  index: ->
-    @view = new <%= "#{view_namespace}.IndexView(#{plural_name}: @#{plural_name})" %>
-    $("#<%= plural_name %>").html(@view.render().el)
-
-  show: (id) ->
-    <%= singular_name %> = @<%= plural_name %>.get(id)
-
-    @view = new <%= "#{view_namespace}.ShowView(model: #{singular_name})" %>
-    $("#<%= plural_name %>").html(@view.render().el)
-
-  edit: (id) ->
-    <%= singular_name %> = @<%= plural_name %>.get(id)
-
-    @view = new <%= "#{view_namespace}.EditView(model: #{singular_name})" %>
-    $("#<%= plural_name %>").html(@view.render().el)
+<% end -%>
