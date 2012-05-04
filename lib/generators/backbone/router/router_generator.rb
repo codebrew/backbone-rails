@@ -9,7 +9,7 @@ module Backbone
       desc "This generator creates a backbone router with views and templates for the provided actions"
       
       argument :actions, :type => :array, :default => [], :banner => "action action"
-      option :push_state, :type => :boolean, :default => false
+      class_option :pushstate, :type => :boolean, :default => false
       
       RESERVED_JS_WORDS = %W{
         break case catch continue debugger default delete do else finally for 
@@ -26,7 +26,7 @@ module Backbone
       end
       
       def create_router_files
-        if push_state
+        if options[:pushstate]
           template 'router_ps.coffee', File.join(backbone_path, "routers", class_path, "#{file_name}_router.js.coffee")
         else
           template 'router.coffee', File.join(backbone_path, "routers", class_path, "#{file_name}_router.js.coffee")

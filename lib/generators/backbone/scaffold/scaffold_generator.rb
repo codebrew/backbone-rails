@@ -4,13 +4,13 @@ module Backbone
   module Generators
     class ScaffoldGenerator < ModelGenerator
       
-      option :push_state, :type => :boolean, :default => false
+      class_option :pushstate, :type => :boolean, :default => false
       
       source_root File.expand_path("../templates", __FILE__)
       desc "This generator creates the client side crud scaffolding"
       
       def create_router_files
-        if push_state
+        if options[:pushstate]
           template 'router_ps.coffee', File.join(backbone_path, "routers", class_path, "#{file_name}_router.js.coffee")
         else
           template 'router.coffee', File.join(backbone_path, "routers", class_path, "#{file_name}_router.js.coffee")
@@ -19,7 +19,7 @@ module Backbone
       
       def create_view_files
         available_views.each do |view|
-          if push_state
+          if options[:pushstate]
             template "views_ps/#{view}_view.coffee", File.join(backbone_path, "views", plural_name, "#{view}_view.js.coffee")
           else
             template "views/#{view}_view.coffee", File.join(backbone_path, "views", plural_name, "#{view}_view.js.coffee")
