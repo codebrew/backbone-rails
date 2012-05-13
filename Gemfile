@@ -13,6 +13,7 @@ gem 'coffee-script'
 gem 'uglifier'
 gem 'jquery-rails'
 gem 'ejs'
+gem 'underscore-rails'
 
 if RUBY_VERSION < '1.9'
   gem "ruby-debug", ">= 0.10.3"
