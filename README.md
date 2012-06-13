@@ -14,6 +14,10 @@ This gem vendors the latest version of underscore.js and backbone.js for Rails 3
 In your Gemfile, add this line:
 
     gem "rails-backbone"
+
+Since the pushState version of the gem has not been released yet, if you wish to use it you can fetch it from the git repository, adding this line to your Gemfile instead:
+
+    gem "rails-backbone", :git => git://github.com/zamith/backbone-rails.git
   
 Then run the following commands:
 
@@ -96,6 +100,34 @@ If you prefer haml, this is equivalent to inserting the following code into `app
         Backbone.history.start();
       });
 
-    
 Now start your server `rails s` and browse to [localhost:3000/posts](http://localhost:3000/posts)
 You should now have a fully functioning single page crud app for Post models.
+
+### Using pushState
+
+In order to make the scaffold compliant with pushState just add `--pushstate` at the end of the command, like so:
+
+    rails g backbone:scaffold Post title:string content:string --pushstate
+
+Take in consideration that the backbone history must be told to use push state and that when a link is clicked it must navigate to the page:
+
+    <div id="posts"></div>
+
+    <script type="text/javascript">
+      $(function() {
+        // Blog is the app name
+        window.router = new Blog.Routers.PostsRouter({posts: <%= @posts.to_json.html_safe -%>});
+        $("a").live('click', function(ev){
+          var href = $(this).attr("href");
+          window.router.navigate(href, {trigger: true});
+          return false;
+        });
+        Backbone.history.start({pushState: true, root: "/posts"});
+      });
+    </script>
+
+You must also edit the controller at `app/controllers/posts_controller.rb` so that the `create` and `update` actions remove the `id`, `created_at` and `updated_at` values from the params hash, since they are handled by the server. You can do that by adding this line on the top of each action:
+
+    params[:post] = params[:post].except(:id, :created_at, :updated_at) if request.format == "application/json"
+
+>Note that using real URLs requires your web server to be able to correctly render those pages, so back-end changes are required as well. For example, if you have a route of <code>/documents/100</code>, your web server must be able to serve that page, if the browser visits that URL directly.
