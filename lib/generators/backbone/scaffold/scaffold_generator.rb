@@ -11,9 +11,9 @@ module Backbone
       
       def create_router_files
         if options[:pushstate]
-          template 'router_ps.coffee', File.join(backbone_path, "routers", class_path, "#{file_name}_router.js.coffee")
+          template 'router_ps.coffee', File.join(backbone_path, "routers", class_path, "#{plural_name}_router.js.coffee")
         else
-          template 'router.coffee', File.join(backbone_path, "routers", class_path, "#{file_name}_router.js.coffee")
+          template 'router.coffee', File.join(backbone_path, "routers", class_path, "#{plural_name}_router.js.coffee")
         end
       end
       
