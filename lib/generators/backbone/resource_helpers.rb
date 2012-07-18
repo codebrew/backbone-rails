@@ -55,7 +55,7 @@ module Backbone
         when :js
           "js"
         else
-          "coffee"
+          "js.coffee"
         end
       end
       
