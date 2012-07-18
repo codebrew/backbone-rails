@@ -32,10 +32,10 @@ module Backbone
          actions.each do |action|
            @action = action
            @view_path = File.join(backbone_path, "views", plural_name, "#{action}_view.#{asset_suffix}")
-           @jst_path = File.join(backbone_path,"templates", plural_name, "#{action}.jst.ejs")
+           @jst_path = File.join(backbone_path,"templates", plural_name, "#{action}.#{template_suffix}")
            
            template "view.#{asset_suffix}", @view_path
-           template "template.jst", @jst_path
+           template "template.#{template_suffix}", @jst_path
          end
       end
 

@@ -14,11 +14,11 @@ module Backbone
       def create_view_files
         available_views.each do |view|
           template "views/#{view}_view.#{asset_suffix}", File.join(backbone_path, "views", plural_name, "#{view}_view.#{asset_suffix}")
-          template "templates/#{view}.jst", File.join(backbone_path, "templates", plural_name, "#{view}.jst.ejs")       
+          template "templates/#{view}.#{template_suffix}", File.join(backbone_path, "templates", plural_name, "#{view}.#{template_suffix}")       
         end
         
         template "views/model_view.#{asset_suffix}", File.join(backbone_path, "views", plural_name, "#{singular_name}_view.#{asset_suffix}")
-        template "templates/model.jst", File.join(backbone_path, "templates", plural_name, "#{singular_name}.jst.ejs") 
+        template "templates/model.#{template_suffix}", File.join(backbone_path, "templates", plural_name, "#{singular_name}.#{template_suffix}") 
       end
       
       protected

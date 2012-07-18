@@ -58,6 +58,15 @@ module Backbone
           "js.coffee"
         end
       end
+
+      def template_suffix
+        case Rails.configuration.generators.rails[:javascript_templates]
+        when :hbs
+          "js.jst.hbs"
+        else
+          "jst.ejs"
+        end
+      end
       
     end
   end
