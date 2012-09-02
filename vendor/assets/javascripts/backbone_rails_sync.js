@@ -1,16 +1,16 @@
 (function($) {
   var methodMap = {
     'create': 'POST',
-    'update': 'PUT',
+    'update': 'PATCH',
     'delete': 'DELETE',
     'read'  : 'GET'
   };
-  
+
   var getUrl = function(object) {
     if (!(object && object.url)) return null;
     return _.isFunction(object.url) ? object.url() : object.url;
   };
-  
+
   var urlError = function() {
     throw new Error("A 'url' property or function must be specified");
   };
@@ -38,7 +38,7 @@
     if (!params.data && model && (method == 'create' || method == 'update')) {
       params.contentType = 'application/json';
 
-      var data = {}
+      var data = {};
 
       if(model.paramRoot) {
         data[model.paramRoot] = model.toJSON();
@@ -46,7 +46,7 @@
         data = model.toJSON();
       }
 
-      params.data = JSON.stringify(data)
+      params.data = JSON.stringify(data);
     }
 
     // Don't process data on a non-GET request.
@@ -60,9 +60,9 @@
       model.trigger('sync:end');
       if (complete) complete(jqXHR, textStatus);
     };
-    
+
     // Make the request.
     return $.ajax(params);
-  }
-  
+  };
+
 })(jQuery);
