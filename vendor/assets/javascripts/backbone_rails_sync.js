@@ -1,7 +1,7 @@
 (function($) {
   var methodMap = {
     'create': 'POST',
-    'update': 'PATCH',
+    'update': 'PUT',
     'delete': 'DELETE',
     'read'  : 'GET'
   };
