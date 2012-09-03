@@ -61,8 +61,6 @@
       if (complete) complete(jqXHR, textStatus);
     };
 
-    debug.log("Params for request: ", params);
-
     // Make the request.
     return $.ajax(params);
   };
