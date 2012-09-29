@@ -23,9 +23,10 @@
       type:         type,
       dataType:     'json',
       beforeSend: function( xhr ) {
-        var token = $('meta[name="csrf-token"]').attr('content');
-        if (token) xhr.setRequestHeader('X-CSRF-Token', token);
-
+        if (!options.noCSRF) {
+          var token = $('meta[name="csrf-token"]').attr('content');
+          if (token) xhr.setRequestHeader('X-CSRF-Token', token);  
+        }
         model.trigger('sync:start');
       }
     }, options);
