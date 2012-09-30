@@ -1,0 +1,16 @@
+<h1>Listing <%= plural_table_name %></h1>
+
+<table id="<%= plural_name %>-table">
+  <tr>
+<% attributes.each do |attribute| -%>
+    <th><%= attribute.human_name %></th>
+<% end -%>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+</table>
+
+<br/>
+
+<a href="#/new">New <%= human_name %></a>

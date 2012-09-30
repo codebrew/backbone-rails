@@ -7,7 +7,7 @@ module Backbone
       
       source_root File.expand_path("../templates", __FILE__)
       desc "This generator creates a backbone router with views and templates for the provided actions"
-      
+
       argument :actions, :type => :array, :default => [], :banner => "action action"
       
       RESERVED_JS_WORDS = %W{
@@ -25,17 +25,17 @@ module Backbone
       end
       
       def create_router_files 
-        template 'router.coffee', File.join(backbone_path, "routers", class_path, "#{file_name}_router.js.coffee")
+        template "router.#{asset_suffix}", File.join(backbone_path, "routers", class_path, "#{file_name}_router.#{asset_suffix}")
       end
       
       def create_view_files
          actions.each do |action|
            @action = action
-           @view_path = File.join(backbone_path, "views", plural_name, "#{action}_view.js.coffee")
-           @jst_path = File.join(backbone_path,"templates", plural_name, "#{action}.jst.ejs")
+           @view_path = File.join(backbone_path, "views", plural_name, "#{action}_view.#{asset_suffix}")
+           @jst_path = File.join(backbone_path,"templates", plural_name, "#{action}.#{template_suffix}")
            
-           template "view.coffee", @view_path
-           template "template.jst", @jst_path
+           template "view.#{asset_suffix}", @view_path
+           template "template.#{template_suffix}", @jst_path
          end
       end
 

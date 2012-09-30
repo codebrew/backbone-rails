@@ -11,7 +11,7 @@ module Backbone
           
       class_option :skip_git, :type => :boolean, :aliases => "-G", :default => false,
                               :desc => "Skip Git ignores and keeps"
-                                      
+
       def inject_backbone
         inject_into_file "app/assets/javascripts/application.js", :before => "//= require_tree" do
           "//= require underscore\n//= require backbone\n//= require backbone_rails_sync\n//= require backbone_datalink\n//= require backbone/#{application_name.underscore}\n"
@@ -26,7 +26,7 @@ module Backbone
       end
     
       def create_app_file
-        template "app.coffee", "app/assets/javascripts/backbone/#{application_name.underscore}.js.coffee"
+        template "app.#{asset_suffix}", "app/assets/javascripts/backbone/#{application_name.underscore}.#{asset_suffix}"
       end
      
     end

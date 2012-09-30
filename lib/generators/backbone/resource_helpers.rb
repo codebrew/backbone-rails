@@ -49,6 +49,24 @@ module Backbone
       def uncapitalize(str)
         str[0, 1].downcase << str[1..-1]
       end
+
+      def asset_suffix
+        case Rails.configuration.generators.rails[:javascript_engine]
+        when :js
+          "js"
+        else
+          "js.coffee"
+        end
+      end
+
+      def template_suffix
+        case Rails.configuration.generators.rails[:javascript_templates]
+        when :hbs
+          "js.jst.hbs"
+        else
+          "jst.ejs"
+        end
+      end
       
     end
   end
