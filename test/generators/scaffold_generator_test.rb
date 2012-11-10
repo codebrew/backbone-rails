@@ -62,8 +62,8 @@ class ScaffoldGeneratorTest < Rails::Generators::TestCase
     assert_file "#{backbone_path}/views/posts/edit_view.js.coffee" do |view|
       assert_match /class Dummy.Views.Posts.EditView extends Backbone.View/, view
       assert_match /#{Regexp.escape('JST["backbone/templates/posts/edit"]')}/, view
-      assert_match /#{Regexp.escape('"submit #edit-post" : "update"')}/, view
-      assert_match /#{Regexp.escape('success : (post) =>')}/, view
+      assert_match /#{Regexp.escape('"submit #edit-post": "update"')}/, view
+      assert_match /#{Regexp.escape('success: (post) =>')}/, view
     end
     
     assert_file "#{backbone_path}/views/posts/post_view.js.coffee" do |view|
@@ -99,9 +99,12 @@ class ScaffoldGeneratorTest < Rails::Generators::TestCase
     
     assert_file "#{backbone_path}/views/blog_posts/edit_view.js.coffee" do |view|
       assert_match /class Dummy.Views.BlogPosts.EditView extends Backbone.View/, view
-      assert_match /#{Regexp.escape('JST["backbone/templates/blog_posts/edit"]')}/, view
-      assert_match /#{Regexp.escape('"submit #edit-blog_post" : "update"')}/, view
-      assert_match /#{Regexp.escape('success : (blog_post) =>')}/, view
+      assert_match /#{Regexp.escape('template: JST["backbone/templates/blog_posts/edit"]')}/, view
+      assert_match /#{Regexp.escape('"submit #edit-blog_post": "update"')}/, view
+      assert_match /#{Regexp.escape('success: (blog_post) =>')}/, view
+      assert_match /#{Regexp.escape('events:')}/, view
+      assert_match /#{Regexp.escape('update: (e) ->')}/, view
+      assert_match /#{Regexp.escape('render: ->')}/, view
     end
     
     assert_file "#{backbone_path}/views/blog_posts/blog_post_view.js.coffee" do |view|
