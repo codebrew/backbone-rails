@@ -14,7 +14,7 @@ class Dummy.Views.Posts.IndexView extends Backbone.View
     @$("tbody").append(view.render().el)
 
   render: =>
-    $(@el).html(@template(posts: @options.posts.toJSON() ))
+    @$el.html(@template(posts: @options.posts.toJSON() ))
     @addAll()
 
     return this
