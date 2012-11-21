@@ -16,7 +16,7 @@ class <%= view_namespace %>.EditView extends Backbone.View
         window.location.hash = "/#{@model.id}"
     )
 
-  render : ->
+  render: ->
     @$el.html(@template(@model.toJSON() ))
 
     this.$("form").backboneLink(@model)
