@@ -2,15 +2,16 @@
   var methodMap = {
     'create': 'POST',
     'update': 'PUT',
+    'patch' : 'PUT',
     'delete': 'DELETE',
     'read'  : 'GET'
   };
-  
+
   var getUrl = function(object) {
     if (!(object && object.url)) return null;
     return _.isFunction(object.url) ? object.url() : object.url;
   };
-  
+
   var urlError = function() {
     throw new Error("A 'url' property or function must be specified");
   };
@@ -25,7 +26,7 @@
       beforeSend: function( xhr ) {
         if (!options.noCSRF) {
           var token = $('meta[name="csrf-token"]').attr('content');
-          if (token) xhr.setRequestHeader('X-CSRF-Token', token);  
+          if (token) xhr.setRequestHeader('X-CSRF-Token', token);
         }
         model.trigger('sync:start');
       }
@@ -36,15 +37,16 @@
     }
 
     // Ensure that we have the appropriate request data.
-    if (!params.data && model && (method == 'create' || method == 'update')) {
+    if (!params.data && model && (method === 'create' || method === 'update' || method === 'patch')) {
       params.contentType = 'application/json';
 
       var data = {}
 
+      var _attributes = params.attrs || model.toJSON();
       if(model.paramRoot) {
-        data[model.paramRoot] = model.toJSON();
+        data[model.paramRoot] = _attributes;
       } else {
-        data = model.toJSON();
+        data = _attributes;
       }
 
       params.data = JSON.stringify(data)
@@ -61,9 +63,9 @@
       model.trigger('sync:end');
       if (complete) complete(jqXHR, textStatus);
     };
-    
+
     // Make the request.
     return $.ajax(params);
   }
-  
+
 })(jQuery);
