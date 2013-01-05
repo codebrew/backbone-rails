@@ -1,69 +1,32 @@
 (function($) {
-  var methodMap = {
-    'create': 'POST',
-    'update': 'PUT',
-    'delete': 'DELETE',
-    'read'  : 'GET'
-  };
-  
-  var getUrl = function(object) {
-    if (!(object && object.url)) return null;
-    return _.isFunction(object.url) ? object.url() : object.url;
-  };
-  
-  var urlError = function() {
-    throw new Error("A 'url' property or function must be specified");
-  };
+  Backbone._sync = Backbone.sync;
 
   Backbone.sync = function(method, model, options) {
-    var type = methodMap[method];
+    if (!options.noCSRF) {
+      var beforeSend = options.beforeSend;
 
-    // Default JSON-request options.
-    var params = _.extend({
-      type:         type,
-      dataType:     'json',
-      beforeSend: function( xhr ) {
-        if (!options.noCSRF) {
-          var token = $('meta[name="csrf-token"]').attr('content');
-          if (token) xhr.setRequestHeader('X-CSRF-Token', token);  
-        }
-        model.trigger('sync:start');
-      }
-    }, options);
-
-    if (!params.url) {
-      params.url = getUrl(model) || urlError();
+      // Set X-CSRF-Token HTTP header
+      options.beforeSend = function(xhr) {
+        var token = $('meta[name="csrf-token"]').attr('content');
+        if (token) xhr.setRequestHeader('X-CSRF-Token', token);
+        if (beforeSend) return beforeSend.apply(this, arguments);
+      };
     }
 
-    // Ensure that we have the appropriate request data.
-    if (!params.data && model && (method == 'create' || method == 'update')) {
-      params.contentType = 'application/json';
-
-      var data = {}
-
-      if(model.paramRoot) {
-        data[model.paramRoot] = model.toJSON();
+    // Serialize data, optionally using paramRoot
+    if (options.data == null && model && (method === 'create' || method === 'update' || method === 'patch')) {
+      options.contentType = 'application/json';
+      data = JSON.stringify(options.attrs || model.toJSON(options));
+      if (model.paramRoot) {
+        data = {};
+        data[model.paramRoot] = model.toJSON(options);
       } else {
         data = model.toJSON();
       }
-
-      params.data = JSON.stringify(data)
+      options.data = JSON.stringify(data);
     }
 
-    // Don't process data on a non-GET request.
-    if (params.type !== 'GET') {
-      params.processData = false;
-    }
+    return Backbone._sync(method, model, options);
+  };
 
-    // Trigger the sync end event
-    var complete = options.complete;
-    params.complete = function(jqXHR, textStatus) {
-      model.trigger('sync:end');
-      if (complete) complete(jqXHR, textStatus);
-    };
-    
-    // Make the request.
-    return $.ajax(params);
-  }
-  
 })(jQuery);
