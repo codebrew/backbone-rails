@@ -62,6 +62,18 @@
       if (complete) complete(jqXHR, textStatus);
     };
     
+    var success = options.success;
+    params.success = function(resp) {
+      if (success) success(model, resp, options);
+      model.trigger('sync', model, resp, options);
+    };
+
+    var error = options.error;
+    params.error = function(xhr) {
+      if (error) error(model, xhr, options);
+      model.trigger('error', model, xhr, options);
+    };
+    
     // Make the request.
     return $.ajax(params);
   }
