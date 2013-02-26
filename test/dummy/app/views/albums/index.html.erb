@@ -1,0 +1,8 @@
+<div id="albums"></div>
+
+<script type="text/javascript">
+  $(function() {
+    window.router = new Dummy.Routers.AlbumsRouter({albums: <%= @albums.to_json.html_safe -%>});
+    Backbone.history.start();
+  });
+</script>

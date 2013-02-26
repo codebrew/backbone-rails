@@ -1,6 +1,22 @@
 module Backbone
   module Generators
     module ResourceHelpers
+      def self.included base
+        base.module_eval do
+          class_option :javascript, :aliases => '-J',
+                                    :type => :boolean,
+                                    :default => false,
+                                    :desc => "Generate JavaScript instead of CoffeeScript"
+        end
+      end
+
+      def script_extension
+        if options['javascript'] || !BackboneRails.coffeescript?
+          "js"
+        else
+          "js.coffee"
+        end
+      end
       
       def backbone_path
         "app/assets/javascripts/backbone"

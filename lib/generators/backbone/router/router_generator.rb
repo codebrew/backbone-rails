@@ -25,16 +25,16 @@ module Backbone
       end
       
       def create_router_files 
-        template 'router.coffee', File.join(backbone_path, "routers", class_path, "#{file_name}_router.js.coffee")
+        template "router.#{script_extension}", File.join(backbone_path, "routers", class_path, "#{file_name}_router.#{script_extension}")
       end
       
       def create_view_files
          actions.each do |action|
            @action = action
-           @view_path = File.join(backbone_path, "views", plural_name, "#{action}_view.js.coffee")
+           @view_path = File.join(backbone_path, "views", plural_name, "#{action}_view.#{script_extension}")
            @jst_path = File.join(backbone_path,"templates", plural_name, "#{action}.jst.ejs")
            
-           template "view.coffee", @view_path
+           template "view.#{script_extension}", @view_path
            template "template.jst", @jst_path
          end
       end

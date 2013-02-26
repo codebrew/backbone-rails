@@ -14,13 +14,32 @@ class InstallGeneratorTest < Rails::Generators::TestCase
     
     super
   end
+
+  def teardown
+    BackboneRails.detect_script!
+  end
+
+  test "Assert javascript file is created when coffeescript is not detected" do
+    BackboneRails.javascript!
+    run_generator
+
+    assert_file    "#{backbone_path}/dummy.js",        /window\.Dummy/
+    assert_no_file "#{backbone_path}/dummy.js.coffee"
+  end
   
+  test "Assert javascript file is created when flagged" do
+    run_generator [destination_root, "--javascript"]
+
+    assert_file "#{backbone_path}/dummy.js", /window\.Dummy/
+    assert_no_file "#{backbone_path}/dummy.js.coffee"
+  end
+
   test "Assert application coffeescript file is created" do
     run_generator
     
     assert_file "#{backbone_path}/dummy.js.coffee", /window\.Dummy/
   end
-  
+
   test "Assert application coffeescript file is created for two word application name" do
     Rails.application.class.stubs(:name).returns("FooBar::Application")
     run_generator
