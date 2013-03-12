@@ -6,6 +6,10 @@ class ScaffoldGeneratorTest < Rails::Generators::TestCase
   include GeneratorsTestHelper
   tests Backbone::Generators::ScaffoldGenerator
   arguments %w(Post title:string content:string)
+
+  teardown do
+    BackboneRails.detect_script!
+  end
   
   test "generate router scaffolding" do
     run_generator
@@ -21,6 +25,37 @@ class ScaffoldGeneratorTest < Rails::Generators::TestCase
     end
   end
   
+  test "generate javascript router scaffolding" do
+    BackboneRails.javascript!
+    run_generator
+
+    assert_file "#{backbone_path}/routers/posts_router.js" do |router|
+      assert_match /Dummy.Routers.PostsRouter = Backbone.Router.extend/, router
+      assert_match /newPost: function\(\)/, router
+      assert_match /this.posts.reset\(options.posts\)/, router
+
+      assert_match /new Dummy.Views.Posts.NewView/, router
+      assert_match /new Dummy.Views.Posts.IndexView/, router
+      assert_match /new Dummy.Views.Posts.ShowView/, router
+      assert_match /new Dummy.Views.Posts.EditView/, router
+    end
+  end
+
+  test "generate javascript router scaffolding via flag" do
+    run_generator %w(Post title:string content:string --javascript)
+
+    assert_file "#{backbone_path}/routers/posts_router.js" do |router|
+      assert_match /Dummy.Routers.PostsRouter = Backbone.Router.extend/, router
+      assert_match /newPost: function\(\)/, router
+      assert_match /this.posts.reset\(options.posts\)/, router
+
+      assert_match /new Dummy.Views.Posts.NewView/, router
+      assert_match /new Dummy.Views.Posts.IndexView/, router
+      assert_match /new Dummy.Views.Posts.ShowView/, router
+      assert_match /new Dummy.Views.Posts.EditView/, router
+    end
+  end
+
   test "generate router scaffolding for model with two words" do
     run_generator %w(BlogPost title:string content:string)
     
@@ -69,6 +104,83 @@ class ScaffoldGeneratorTest < Rails::Generators::TestCase
     assert_file "#{backbone_path}/views/posts/post_view.js.coffee" do |view|
       assert_match /class Dummy.Views.Posts.PostView extends Backbone.View/, view
       assert_match /#{Regexp.escape('@template(@model.toJSON() )')}/, view
+      assert_match /#{Regexp.escape('JST["backbone/templates/posts/post"]')}/, view
+    end
+  end
+  
+  test "generate javascript view files" do
+    BackboneRails.javascript!
+    run_generator
+    
+    assert_file "#{backbone_path}/views/posts/index_view.js" do |view|
+      assert_match /#{Regexp.escape('JST["backbone/templates/posts/index"]')}/, view
+      assert_match /#{Regexp.escape('this.template({posts: this.options.posts.toJSON() }))')}/, view
+      assert_match /#{Regexp.escape("new Dummy.Views.Posts.PostView({model : post})")}/, view
+    end
+    
+    assert_file "#{backbone_path}/views/posts/show_view.js" do |view|
+      assert_match /Dummy.Views.Posts.ShowView = Backbone.View.extend/, view
+      assert_match /#{Regexp.escape('this.template(this.model.toJSON() )')}/, view
+      assert_match /#{Regexp.escape('template: JST["backbone/templates/posts/show"]')}/, view
+    end
+    
+    assert_file "#{backbone_path}/views/posts/new_view.js" do |view|
+      assert_match /Dummy.Views.Posts.NewView = Backbone.View.extend/, view
+      assert_match /#{Regexp.escape('this.template(this.model.toJSON() )')}/, view
+      assert_match /#{Regexp.escape('JST["backbone/templates/posts/new"]')}/, view
+      assert_match /#{Regexp.escape('"submit #new-post": "save"')}/, view
+      assert_match /#{Regexp.escape('success: function(post) {')}/, view
+      assert_match /#{Regexp.escape('self.model = post')}/, view
+    end
+    
+    assert_file "#{backbone_path}/views/posts/edit_view.js" do |view|
+      assert_match /Dummy.Views.Posts.EditView = Backbone.View.extend/, view
+      assert_match /#{Regexp.escape('JST["backbone/templates/posts/edit"]')}/, view
+      assert_match /#{Regexp.escape('"submit #edit-post": "update"')}/, view
+      assert_match /#{Regexp.escape('success: function(post) {')}/, view
+    end
+    
+    assert_file "#{backbone_path}/views/posts/post_view.js" do |view|
+      assert_match /Dummy.Views.Posts.PostView = Backbone.View.extend/, view
+      assert_match /#{Regexp.escape('this.template(this.model.toJSON() )')}/, view
+      assert_match /#{Regexp.escape('JST["backbone/templates/posts/post"]')}/, view
+    end
+  end
+  
+  test "generate javascript view files via flag" do
+    run_generator %w(Post title:string content:string --javascript)
+    
+    assert_file "#{backbone_path}/views/posts/index_view.js" do |view|
+      assert_match /#{Regexp.escape('JST["backbone/templates/posts/index"]')}/, view
+      assert_match /#{Regexp.escape('this.template({posts: this.options.posts.toJSON() }))')}/, view
+      assert_match /#{Regexp.escape("new Dummy.Views.Posts.PostView({model : post})")}/, view
+    end
+    
+    assert_file "#{backbone_path}/views/posts/show_view.js" do |view|
+      assert_match /Dummy.Views.Posts.ShowView = Backbone.View.extend/, view
+      assert_match /#{Regexp.escape('this.template(this.model.toJSON() )')}/, view
+      assert_match /#{Regexp.escape('template: JST["backbone/templates/posts/show"]')}/, view
+    end
+    
+    assert_file "#{backbone_path}/views/posts/new_view.js" do |view|
+      assert_match /Dummy.Views.Posts.NewView = Backbone.View.extend/, view
+      assert_match /#{Regexp.escape('this.template(this.model.toJSON() )')}/, view
+      assert_match /#{Regexp.escape('JST["backbone/templates/posts/new"]')}/, view
+      assert_match /#{Regexp.escape('"submit #new-post": "save"')}/, view
+      assert_match /#{Regexp.escape('success: function(post) {')}/, view
+      assert_match /#{Regexp.escape('self.model = post')}/, view
+    end
+    
+    assert_file "#{backbone_path}/views/posts/edit_view.js" do |view|
+      assert_match /Dummy.Views.Posts.EditView = Backbone.View.extend/, view
+      assert_match /#{Regexp.escape('JST["backbone/templates/posts/edit"]')}/, view
+      assert_match /#{Regexp.escape('"submit #edit-post": "update"')}/, view
+      assert_match /#{Regexp.escape('success: function(post) {')}/, view
+    end
+    
+    assert_file "#{backbone_path}/views/posts/post_view.js" do |view|
+      assert_match /Dummy.Views.Posts.PostView = Backbone.View.extend/, view
+      assert_match /#{Regexp.escape('this.template(this.model.toJSON() )')}/, view
       assert_match /#{Regexp.escape('JST["backbone/templates/posts/post"]')}/, view
     end
   end

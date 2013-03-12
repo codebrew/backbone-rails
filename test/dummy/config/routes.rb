@@ -1,4 +1,7 @@
 Dummy::Application.routes.draw do
+  resources :albums
+
+
   resources :posts
 
   get "home/index"

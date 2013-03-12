@@ -6,6 +6,37 @@ class RouterGeneratorTest < Rails::Generators::TestCase
   include GeneratorsTestHelper
   tests Backbone::Generators::RouterGenerator
   
+  teardown do
+    BackboneRails.detect_script!
+  end
+
+  test "javascript router with two actions" do
+    BackboneRails.javascript!
+    run_generator ["Posts", "index", "edit"]
+
+    assert_file "#{backbone_path}/routers/posts_router.js" do |router|
+      assert_match /Dummy.Routers.PostsRouter = Backbone.Router.extend/, router
+    end
+
+    assert_file "#{backbone_path}/views/posts/index_view.js"
+    assert_file "#{backbone_path}/templates/posts/index.jst.ejs"
+    assert_file "#{backbone_path}/views/posts/edit_view.js"
+    assert_file "#{backbone_path}/templates/posts/edit.jst.ejs"
+  end
+
+  test "javascript router with two actions via flag" do
+    run_generator ["Posts", "index", "edit", "--javascript"]
+
+    assert_file "#{backbone_path}/routers/posts_router.js" do |router|
+      assert_match /Dummy.Routers.PostsRouter = Backbone.Router.extend/, router
+    end
+
+    assert_file "#{backbone_path}/views/posts/index_view.js"
+    assert_file "#{backbone_path}/templates/posts/index.jst.ejs"
+    assert_file "#{backbone_path}/views/posts/edit_view.js"
+    assert_file "#{backbone_path}/templates/posts/edit.jst.ejs"
+  end
+
   test "simple router with two actions" do
     run_generator ["Posts", "index", "edit"]
     
