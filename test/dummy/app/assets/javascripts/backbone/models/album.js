@@ -3,7 +3,7 @@ Dummy.Models.Album = Backbone.Model.extend({
 
   defaults: {
     title: null,
-    artist: null,
+    artist: null
   }
 });
 

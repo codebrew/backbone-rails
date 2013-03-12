@@ -14,17 +14,17 @@ Dummy.Views.Albums.EditView = Backbone.View.extend({
 
     this.model.save(null, {
       success: function(album) {
-        self.model = album,
-        window.location.hash = "/" + self.model.id
+        self.model = album;
+        window.location.hash = "/" + self.model.id;
       }
     });
   },
 
   render: function() {
-    this.$el.html(this.template(this.model.toJSON() ))
+    this.$el.html(this.template(this.model.toJSON() ));
 
-    this.$("form").backboneLink(this.model)
+    this.$("form").backboneLink(this.model);
 
-    return this
+    return this;
   }
 });
