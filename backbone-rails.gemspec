@@ -2,7 +2,7 @@
 # project in your rails apps through git.
 Gem::Specification.new do |s|
   s.name = "rails-backbone"
-  s.version = "0.9.10"
+  s.version = "1.0.0"
   s.authors     = ["Ryan Fitzgerald", "Code Brew Studios"]
   s.email       = ["ryan@codebrewstudios.com"]
   s.homepage    = "http://github.com/codebrew/backbone-rails"
@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency('sqlite3')
   s.add_development_dependency('sass')
   s.add_development_dependency('uglifier')
-  s.add_development_dependency('mocha', '~> 0.10.3')
+  s.add_development_dependency('mocha', '~> 0.13.3')
   s.add_development_dependency('turn', '~> 0.8.3')
   s.add_development_dependency('minitest', '~> 2.10.1')
   
