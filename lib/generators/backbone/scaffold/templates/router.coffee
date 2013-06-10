@@ -8,7 +8,7 @@ class <%= router_namespace %>Router extends Backbone.Router
     "index"    : "index"
     ":id/edit" : "edit"
     ":id"      : "show"
-    ".*"        : "index"
+    "*other"        : "index"
 
   new<%= class_name %>: ->
     @view = new <%= "#{view_namespace}.NewView(collection: @#{plural_name})" %>
