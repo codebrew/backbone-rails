@@ -3,7 +3,8 @@
     'create': 'POST',
     'update': 'PUT',
     'delete': 'DELETE',
-    'read'  : 'GET'
+    'read'  : 'GET',
+    'patch' : 'PUT'
   };
   
   var getUrl = function(object) {
@@ -34,6 +35,9 @@
     if (!params.url) {
       params.url = getUrl(model) || urlError();
     }
+    
+    if(params.attrs && !params.data)
+      params.data = params.attrs
 
     // Ensure that we have the appropriate request data.
     if (!params.data && model && (method == 'create' || method == 'update')) {
@@ -73,6 +77,7 @@
       if (error) error(model, xhr, options);
       model.trigger('error', model, xhr, options);
     };
+    
     
     // Make the request.
     return $.ajax(params);
