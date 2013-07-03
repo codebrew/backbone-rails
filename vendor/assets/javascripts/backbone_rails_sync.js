@@ -38,7 +38,7 @@
     
     
     // Ensure that we have the appropriate request data.
-    if (!params.data && model && (method == 'create' || method == 'update')) {
+    if (!params.data && model && (method == 'create' || method == 'update' || method == 'patch')) {
       params.contentType = 'application/json';
 
       var data = {}
