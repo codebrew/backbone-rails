@@ -36,9 +36,7 @@
       params.url = getUrl(model) || urlError();
     }
     
-    if(params.attrs && !params.data)
-      params.data = params.attrs
-
+    
     // Ensure that we have the appropriate request data.
     if (!params.data && model && (method == 'create' || method == 'update')) {
       params.contentType = 'application/json';
@@ -46,9 +44,15 @@
       var data = {}
 
       if(model.paramRoot) {
-        data[model.paramRoot] = model.toJSON();
+        if(params.attrs)
+          data[model.paramRoot] = params.attrs;
+        else
+          data[model.paramRoot] = model.toJSON();
       } else {
-        data = model.toJSON();
+        if(params.attrs)
+          data = params.attrs;
+        else
+          data = model.toJSON();
       }
 
       params.data = JSON.stringify(data)
