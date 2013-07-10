@@ -3,7 +3,8 @@
     'create': 'POST',
     'update': 'PUT',
     'delete': 'DELETE',
-    'read'  : 'GET'
+    'read'  : 'GET',
+    'patch' : 'PUT'
   };
   
   var getUrl = function(object) {
@@ -34,17 +35,24 @@
     if (!params.url) {
       params.url = getUrl(model) || urlError();
     }
-
+    
+    
     // Ensure that we have the appropriate request data.
-    if (!params.data && model && (method == 'create' || method == 'update')) {
+    if (!params.data && model && (method == 'create' || method == 'update' || method == 'patch')) {
       params.contentType = 'application/json';
 
       var data = {}
 
       if(model.paramRoot) {
-        data[model.paramRoot] = model.toJSON();
+        if(params.attrs)
+          data[model.paramRoot] = params.attrs;
+        else
+          data[model.paramRoot] = model.toJSON();
       } else {
-        data = model.toJSON();
+        if(params.attrs)
+          data = params.attrs;
+        else
+          data = model.toJSON();
       }
 
       params.data = JSON.stringify(data)
@@ -73,6 +81,7 @@
       if (error) error(model, xhr, options);
       model.trigger('error', model, xhr, options);
     };
+    
     
     // Make the request.
     return $.ajax(params);
