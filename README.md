@@ -1,14 +1,25 @@
-# Backbone-Rails [![Build Status](https://secure.travis-ci.org/codebrew/backbone-rails.png)](http://travis-ci.org/codebrew/backbone-rails)
+# Backbone-Rails [![Build Status](https://secure.travis-ci.org/codebrew/backbone-rails.png)](http://travis-ci.org/codebrew/backbone-rails)[![Gem Version](https://badge.fury.io/rb/rails-backbone.png)](http://badge.fury.io/rb/rails-backbone)
 
 Easily setup and use backbone.js (1.1.0) with Rails 3.1 and greater
 
 ##Version##
+
+###Github master branch###
 
 Gem version : 1.1.0
 
 Backbone version : 1.1.0
 
 Underscore version : 1.5.2
+
+###Rubygems###
+
+Gem version : 0.9.10
+
+Backbone version : 0.9.10
+
+Underscore version : 1.4.3
+
 
 ##Credits##
 ###Author###
