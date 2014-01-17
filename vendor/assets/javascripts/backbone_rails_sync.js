@@ -64,7 +64,7 @@
     
     var success = options.success;
     params.success = function(resp) {
-      if (success) success(model, resp, options);
+      if (success) success(resp);
       model.trigger('sync', model, resp, options);
     };
 
