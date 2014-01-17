@@ -2,7 +2,21 @@
 
 Easily setup and use backbone.js (1.1.0) with Rails 3.1 and greater
 
-Follow [@TheRyanFitz on Twitter](http://twitter.com/#!/TheRyanFitz). Tweet any questions or suggestions you have about the project.
+##Version##
+
+Gem version : 1.1.0
+
+Backbone version : 1.1.0
+
+Underscore version : 1.5.2
+
+##Credits##
+###Author###
+[Ryan Fitzgerald](http://twitter.com/#!/TheRyanFitz)
+###Current Maintainer 
+[Manu S Ajith](http://twitter.com/manusajith)
+###Contributors###
+These [awesome people](https://github.com/codebrew/backbone-rails/graphs/contributors) helped to keep this gem updated
 
 ## Rails setup
 This gem requires the use of rails 3.1 and greater, coffeescript and the new rails asset pipeline provided by sprockets.
@@ -99,3 +113,17 @@ If you prefer haml, this is equivalent to inserting the following code into `app
     
 Now start your server `rails s` and browse to [localhost:3000/posts](http://localhost:3000/posts)
 You should now have a fully functioning single page crud app for Post models.
+
+##Note:##
+If you are using the default Rails 4 scaffold generators, you will need to adjust the default JSON show view (IE, 'show.json') to render the 'id' attribute.
+
+default rails generated show.json.jbuilder
+
+`json.extract! @post, :title, :content, :created_at, :updated_at, :id`
+
+Change it to add `id` attribute as well
+
+`json.extract! @book, :id, :title, :author, :created_at, :updated_at`
+
+Without adjusting the JSON show view, you will be redirected to a "undefined" url after creating an object.
+
