@@ -15,7 +15,7 @@ class <%= router_namespace %>Router extends Backbone.Router
     $("#<%= plural_name %>").html(@view.render().el)
 
   index: ->
-    @view = new <%= "#{view_namespace}.IndexView(#{plural_name}: @#{plural_name})" %>
+    @view = new <%= "#{view_namespace}.IndexView(collection: @#{plural_name})" %>
     $("#<%= plural_name %>").html(@view.render().el)
 
   show: (id) ->
