@@ -1,3 +1,9 @@
 rvm:
   - 1.9.3
   - 2.0.0
+notifications:
+    email:
+      recipients:
+        - neo@codingarena.in
+      on_success: [change]
+      on_failure: [always]
