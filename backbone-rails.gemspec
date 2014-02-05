@@ -3,8 +3,8 @@
 Gem::Specification.new do |s|
   s.name = "rails-backbone"
   s.version = "1.1.0"
-  s.authors     = ["Ryan Fitzgerald", "Code Brew Studios, Manu S Ajith"]
-  s.email       = ["ryan@codebrewstudios.com, neo@codingarena.in"]
+  s.authors     = ["Ryan Fitzgerald", "Code Brew Studios", "Manu S Ajith"]
+  s.email       = ["ryan@codebrewstudios.com", "neo@codingarena.in"]
   s.homepage    = "http://github.com/codebrew/backbone-rails"
   
   s.summary = "Use backbone.js with rails 3.1 and above apps"
