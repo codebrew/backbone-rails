@@ -113,7 +113,8 @@ Edit your posts index view `app/views/posts/index.html.erb` with the following c
     </script>
     
 If you prefer haml, this is equivalent to inserting the following code into `app/views/posts/index.html.haml`:
-
+    
+    #posts    
     :javascript
       $(function() {
         // Blog is the app name
