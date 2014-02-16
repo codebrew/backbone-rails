@@ -13,8 +13,16 @@ module Backbone
                               :desc => "Skip Git ignores and keeps"
 
       def inject_backbone
-        append_to_file "app/assets/javascripts/application.js" do
-          "//= require underscore\n//= require backbone\n//= require backbone_rails_sync\n//= require backbone_datalink\n//= require backbone/#{application_name.underscore}\n"
+        # for JavaScript application.js manifest:        
+        if File.exists? "#{Rails.root}/app/assets/javascripts/application.js"
+          append_to_file "app/assets/javascripts/application.js" do
+            "//= require underscore\n//= require backbone\n//= require backbone_rails_sync\n//= require backbone_datalink\n//= require backbone/#{application_name.underscore}\n"
+          end    
+        # ...or for CoffeeScript application.js.coffee manifest:
+        elsif File.exists? "#{Rails.root}/app/assets/javascripts/application.js.coffee"   
+          append_to_file "app/assets/javascripts/application.js.coffee" do
+            "\n#= require underscore\n#= require backbone\n#= require backbone_rails_sync\n#= require backbone_datalink\n#= require backbone/#{application_name.underscore}\n"
+          end
         end
       end
 
