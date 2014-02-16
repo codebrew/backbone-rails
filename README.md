@@ -128,6 +128,10 @@ Now start your server `rails s` and browse to [localhost:3000/posts](http://loca
 You should now have a fully functioning single page crud app for Post models.
 
 ##Note:##
+####Overrides backbone sync function####
+This gem overrides the backbone sync function. Check [here](https://github.com/codebrew/backbone-rails/blob/master/vendor/assets/javascripts/backbone_rails_sync.js) for details.
+
+####With Rails 4:####
 If you are using the default Rails 4 scaffold generators, you will need to adjust the default JSON show view (IE, 'show.json') to render the 'id' attribute.
 
 default rails generated show.json.jbuilder
