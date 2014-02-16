@@ -1,7 +1,6 @@
 require 'test_helper'
 require 'generators/generators_test_helper'
 require "generators/backbone/install/install_generator"
-require 'mocha'
 
 class InstallGeneratorTest < Rails::Generators::TestCase
   include GeneratorsTestHelper

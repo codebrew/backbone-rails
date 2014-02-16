@@ -11,3 +11,6 @@ Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each { |f| require f }
 
 # For Generators
 require 'rails/generators/test_case'
+
+# setup mocha here rather than in individual test files
+require 'mocha/setup'
