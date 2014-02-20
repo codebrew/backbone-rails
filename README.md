@@ -136,11 +136,11 @@ If you are using the default Rails 4 scaffold generators, you will need to adjus
 
 default rails generated show.json.jbuilder
 
-`json.extract! @post, :title, :content, :created_at, :updated_at, :id`
+`json.extract! @post, :title, :content, :created_at, :updated_at`
 
 Change it to add `id` attribute as well
 
-`json.extract! @book, :id, :title, :author, :created_at, :updated_at`
+`json.extract! @post, :id, :title, :content, :created_at, :updated_at`
 
 Without adjusting the JSON show view, you will be redirected to a "undefined" url after creating an object.
 
