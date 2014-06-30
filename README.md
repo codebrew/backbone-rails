@@ -127,6 +127,8 @@ If you prefer haml, this is equivalent to inserting the following code into `app
 Now start your server `rails s` and browse to [localhost:3000/posts](http://localhost:3000/posts)
 You should now have a fully functioning single page crud app for Post models.
 
+Sample application can be found [here](https://github.com/manusajith/backbone-rails-demo)
+
 ##Note:##
 ####Overrides backbone sync function####
 This gem overrides the backbone sync function. Check [here](https://github.com/codebrew/backbone-rails/blob/master/vendor/assets/javascripts/backbone_rails_sync.js) for details.
