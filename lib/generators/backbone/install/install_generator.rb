@@ -28,7 +28,7 @@ module Backbone
         # ...or for CoffeeScript application.js.coffee manifest:
         elsif File.exists? "#{Rails.root}/app/assets/javascripts/application.js.coffee" 
           #add backbone.js files above the require_tree if present
-          if File.readlines("#{Rails.root}/app/assets/javascripts/application.js").grep(/require_tree/).any?
+          if File.readlines("#{Rails.root}/app/assets/javascripts/application.js.coffee").grep(/require_tree/).any?
             inject_into_file "app/assets/javascripts/application.js.coffee", before: '#= require_tree .' do
               "\n#= require underscore\n#= require backbone\n#= require backbone_rails_sync\n#= require backbone_datalink\n#= require backbone/#{application_name.underscore}\n"
             end
