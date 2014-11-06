@@ -13,15 +13,15 @@ class ModelGeneratorTest < Rails::Generators::TestCase
       model_class = Regexp.escape("class Dummy.Models.Post extends Backbone.Model")
       collection_class = Regexp.escape("class Dummy.Collections.PostsCollection extends Backbone.Collection")
       
-      assert_match /#{model_class}/, model
-      assert_match /#{collection_class}/, model
+      assert_match(/#{model_class}/, model)
+      assert_match(/#{collection_class}/, model)
       
-      assert_match /paramRoot: 'post'/, model
-      assert_match /url: '\/posts'/, model
+      assert_match(/paramRoot: 'post'/, model)
+      assert_match(/url: '\/posts'/, model)
       
-      assert_match /defaults:/, model
-      assert_match /title: null/, model
-      assert_match /content: null/, model
+      assert_match(/defaults:/, model)
+      assert_match(/title: null/, model)
+      assert_match(/content: null/, model)
     end
     
   end
@@ -33,15 +33,15 @@ class ModelGeneratorTest < Rails::Generators::TestCase
       model_class = Regexp.escape("class Dummy.Models.BlogPost extends Backbone.Model")
       collection_class = Regexp.escape("class Dummy.Collections.BlogPostsCollection extends Backbone.Collection")
       
-      assert_match /#{model_class}/, model
-      assert_match /#{collection_class}/, model
+      assert_match(/#{model_class}/, model)
+      assert_match(/#{collection_class}/, model)
       
-      assert_match /paramRoot: 'blog_post'/, model
-      assert_match /url: '\/blog_posts'/, model
+      assert_match(/paramRoot: 'blog_post'/, model)
+      assert_match(/url: '\/blog_posts'/, model)
       
-      assert_match /defaults:/, model
-      assert_match /title: null/, model
-      assert_match /content: null/, model
+      assert_match(/defaults:/, model)
+      assert_match(/title: null/, model)
+      assert_match(/content: null/, model)
     end
     
   end
