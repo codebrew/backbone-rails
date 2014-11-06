@@ -10,7 +10,7 @@ class RouterGeneratorTest < Rails::Generators::TestCase
     run_generator ["Posts", "index", "edit"]
     
     assert_file "#{backbone_path}/routers/posts_router.js.coffee" do |router|
-      assert_match /Dummy.Routers.PostsRouter extends Backbone.Router/, router
+      assert_match(/Dummy.Routers.PostsRouter extends Backbone.Router/, router)
     end
     
     %W{index edit}.each do |action|
@@ -23,7 +23,7 @@ class RouterGeneratorTest < Rails::Generators::TestCase
     run_generator ["BlogPosts", "index", "edit"]
     
     assert_file "#{backbone_path}/routers/blog_posts_router.js.coffee" do |router|
-      assert_match /Dummy.Routers.BlogPostsRouter extends Backbone.Router/, router
+      assert_match(/Dummy.Routers.BlogPostsRouter extends Backbone.Router/, router)
     end
     
     %W{index edit}.each do |action|

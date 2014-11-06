@@ -14,7 +14,7 @@ module Backbone
 
       def inject_backbone
         # for JavaScript application.js manifest:        
-        if File.exists? "#{Rails.root}/app/assets/javascripts/application.js"
+        if File.exist? "#{Rails.root}/app/assets/javascripts/application.js"
           #add backbone.js files above the require_tree if present
           if File.readlines("#{Rails.root}/app/assets/javascripts/application.js").grep(/require_tree/).any?
             inject_into_file "app/assets/javascripts/application.js", before: '//= require_tree .' do
@@ -26,7 +26,7 @@ module Backbone
             end 
           end   
         # ...or for CoffeeScript application.js.coffee manifest:
-        elsif File.exists? "#{Rails.root}/app/assets/javascripts/application.js.coffee" 
+        elsif File.exist? "#{Rails.root}/app/assets/javascripts/application.js.coffee"
           #add backbone.js files above the require_tree if present
           if File.readlines("#{Rails.root}/app/assets/javascripts/application.js.coffee").grep(/require_tree/).any?
             inject_into_file "app/assets/javascripts/application.js.coffee", before: '#= require_tree .' do

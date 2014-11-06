@@ -56,10 +56,10 @@ class InstallGeneratorTest < Rails::Generators::TestCase
     run_generator
     
     assert_file "app/assets/javascripts/application.js" do |application|
-      assert_match /require backbone\/dummy/, application
+      assert_match(/require backbone\/dummy/, application)
       
       %W{underscore backbone backbone_rails_sync backbone_datalink}.each do |require|
-        assert_match /#{require}/, application
+        assert_match(/#{require}/, application)
       end
     end
   end  
