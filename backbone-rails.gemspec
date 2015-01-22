@@ -6,6 +6,7 @@ Gem::Specification.new do |s|
   s.authors     = ["Ryan Fitzgerald", "Code Brew Studios", "Manu S Ajith"]
   s.email       = ["ryan@codebrewstudios.com", "neo@codingarena.in"]
   s.homepage    = "http://github.com/codebrew/backbone-rails"
+  s.license     = "MIT"
   
   s.summary = "Use backbone.js with rails 3.1 and above apps"
   s.description = "Quickly setup backbone.js for use with rails 3.1 and above apps. Generators are provided to quickly get started."
