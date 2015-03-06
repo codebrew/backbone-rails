@@ -62,19 +62,19 @@ The generators will only create client side code (javascript).
 
 ### Model Generator
 
-    rails g backbone:model
+    rails g backbone:model model_name [property_name:property_type[,]]
     
 This generator creates a backbone model and collection inside `app/assets/javascript/backbone/models` to be used to talk to the rails backend.
 
 ### Routers
     
-    rails g backbone:router
+    rails g backbone:router model_name [action_name[,]]
     
 This generator creates a backbone router with corresponding views and templates for the given actions provided.
 
 ### Scaffolding
 
-    rails g backbone:scaffold
+    rails g backbone:scaffold model_name [property_name:property_type[,]]
     
 This generator creates a router, views, templates, model and collection to create a simple crud single page app
 
@@ -123,7 +123,7 @@ If you prefer haml, this is equivalent to inserting the following code into `app
         Backbone.history.start();
       });
 
-    
+
 Now start your server `rails s` and browse to [localhost:3000/posts](http://localhost:3000/posts)
 You should now have a fully functioning single page crud app for Post models.
 
