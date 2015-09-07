@@ -16,12 +16,13 @@
     // Serialize data, optionally using paramRoot
     if (options.data == null && model && (method === 'create' || method === 'update' || method === 'patch')) {
       options.contentType = 'application/json';
-      data = JSON.stringify(options.attrs || model.toJSON(options));
+      var attributes = options.attrs || model.toJSON(options);
+      var data;
       if (model.paramRoot) {
         data = {};
-        data[model.paramRoot] = model.toJSON(options);
+        data[model.paramRoot] = attributes;
       } else {
-        data = model.toJSON();
+        data = attributes;
       }
       options.data = JSON.stringify(data);
     }
