@@ -1,5 +1,6 @@
 class <%= model_namespace %> extends Backbone.Model
   paramRoot: '<%= singular_table_name %>'
+  urlRoot: '<%= route_url %>'
 
   defaults:
 <% attributes.each do |attribute| -%>
