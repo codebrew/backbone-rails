@@ -5,6 +5,7 @@
         var el, name;
         el = $(this);
         name = el.attr("name");
+        if(!name) return;
         model.bind("change:" + name, function() {
           return el.val(model.get(name));
         });
