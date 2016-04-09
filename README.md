@@ -38,7 +38,7 @@ This gem vendors the latest version of underscore.js and backbone.js for Rails 3
 
 In your Gemfile, add this line:
 
-    gem "rails-backbone"
+    gem "backbone-rails"
 
 Then run the following commands:
 
@@ -86,7 +86,7 @@ Created a new rails application called `blog`.
 
 Edit your Gemfile and add
 
-    gem 'rails-backbone'
+    gem 'backbone-rails'
 
 Install the gem and generate scaffolding.
 
