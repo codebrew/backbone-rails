@@ -2,17 +2,9 @@
 
 Easily setup and use backbone.js (1.2.2) with Rails 3.1 and greater
 
-##Version##
+## Version ##
 
-###Github master branch###
-
-Gem version : 1.2.2
-
-Backbone version : 1.2.2
-
-Underscore version : 1.8.3
-
-###Rubygems###
+### Github master branch ###
 
 Gem version : 1.2.2
 
@@ -20,13 +12,21 @@ Backbone version : 1.2.2
 
 Underscore version : 1.8.3
 
+### Rubygems ###
 
-##Credits##
-###Author###
+Gem version : 1.2.2
+
+Backbone version : 1.2.2
+
+Underscore version : 1.8.3
+
+
+## Credits ##
+### Author ###
 [Ryan Fitzgerald](http://twitter.com/#!/TheRyanFitz)
-###Current Maintainer
+### Current Maintainer
 [Manu S Ajith](http://twitter.com/manusajith)
-###Contributors###
+### Contributors ###
 These [awesome people](https://github.com/codebrew/backbone-rails/graphs/contributors) helped to keep this gem updated
 
 ## Rails setup
@@ -129,11 +129,11 @@ You should now have a fully functioning single page crud app for Post models.
 
 Sample application can be found [here](https://github.com/manusajith/backbone-rails-demo)
 
-##Note:##
-####Overrides backbone sync function####
+## Note: ##
+#### Overrides backbone sync function ####
 This gem overrides the backbone sync function. Check [here](https://github.com/codebrew/backbone-rails/blob/master/vendor/assets/javascripts/backbone_rails_sync.js) for details.
 
-####With Rails 4:####
+#### With Rails 4: ####
 If you are using the default Rails 4 scaffold generators, you will need to adjust the default JSON show view (IE, 'show.json') to render the 'id' attribute.
 
 default rails generated show.json.jbuilder
