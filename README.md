@@ -2,13 +2,21 @@
 
 Easily setup and use backbone.js (1.2.2) with Rails 3.1 and greater
 
-##Version##
+## Install Notes for Galvanize
+
+For some reason, I couldn't get the gems to install on the latest bundler, so use the command:
+
+> bundle _2.1.4_ install
+
+to install all gems
+
+## Version
 
 ###Github master branch###
 
-Gem version : 1.2.2
+Gem version : 1.2.2.1
 
-Backbone version : 1.2.2
+Backbone version : 1.13.1
 
 Underscore version : 1.8.3
 
@@ -20,7 +28,6 @@ Backbone version : 1.2.2
 
 Underscore version : 1.8.3
 
-
 ##Credits##
 ###Author###
 [Ryan Fitzgerald](http://twitter.com/#!/TheRyanFitz)
@@ -30,6 +37,7 @@ Underscore version : 1.8.3
 These [awesome people](https://github.com/codebrew/backbone-rails/graphs/contributors) helped to keep this gem updated
 
 ## Rails setup
+
 This gem requires the use of rails 3.1 and greater, coffeescript and the new rails asset pipeline provided by sprockets.
 
 This gem vendors the latest version of underscore.js and backbone.js for Rails 3.1 and greater. The files will be added to the asset pipeline and available for you to use.
@@ -57,6 +65,7 @@ Running `rails g backbone:install` will create the following directory structure
 It will also create a toplevel app_name.coffee file to setup namespacing and setup initial requires.
 
 ## Generators
+
 backbone-rails provides 3 simple generators to help get you started using backbone.js with rails 3.1 and greater.
 The generators will only create client side code (javascript).
 
@@ -122,7 +131,6 @@ If you prefer haml, this is equivalent to inserting the following code into `app
         window.router = new Blog.Routers.PostsRouter({posts: #{@posts.to_json.html_safe}});
         Backbone.history.start();
       });
-
 
 Now start your server `rails s` and browse to [localhost:3000/posts](http://localhost:3000/posts)
 You should now have a fully functioning single page crud app for Post models.
